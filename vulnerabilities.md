@@ -178,3 +178,18 @@ Malicious MCP servers can exploit the Model Context Protocol to covertly exfiltr
 The attack works by inserting tool descriptions that instruct the model to forward the conversation history when the user types a common phrase like "thank you." Since these histories often contain sensitive information like API keys, credentials, intellectual property, and proprietary business strategies, this vulnerability allows attackers to passively collect valuable data over extended periods without triggering suspicion.
 
 ---
+
+## Enterprise Grade Security Vulnerabilities
+
+**Severity:** Critical  
+**Category:** Security  
+**Reported By:** GenSpark Security Team  
+**Date:** May 10, 2025  
+**Tags:** Enterprise Security, Authentication Bypass, Privilege Escalation  
+**URL:** https://roqwvequ.genspark.space/
+
+Several critical vulnerabilities have been discovered in "enterprise grade" MCP implementations that claim to offer enhanced security features. These vulnerabilities can lead to authentication bypass, privilege escalation, and complete system compromise in supposedly hardened environments.
+
+The most concerning aspect is that these vulnerabilities exist in systems specifically marketed as security-enhanced versions of MCP, giving organizations a false sense of security while potentially exposing them to even greater risks than standard implementations.
+
+---
