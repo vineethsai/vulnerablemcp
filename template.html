@@ -81,14 +81,27 @@
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
         }
         
-        .logo i {
-            margin-right: 0.5rem;
-            color: var(--primary-color);
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            color: white;
+            display: flex;
+            align-items: center;
         }
+        
+        .logo h1::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 1px solid #3498db;
+            background-color: transparent;
+            margin-right: 10px;
+        }
+        
+
         
         nav ul {
             display: flex;
@@ -539,7 +552,7 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <h1><a href="#">The Vulnerable MCP Project</a></h1>
+                <h1>MCP-Issues</h1>
             </div>
             <nav>
                 <ul>
