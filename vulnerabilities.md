@@ -133,3 +133,48 @@ MCP servers with identical tool names can lead to naming collisions where malici
 This vulnerability can be exploited by malicious servers to hijack legitimate tool functionality, redirecting actions intended for trusted tools to malicious endpoints.
 
 ---
+
+## Insecure Credential Storage Plagues MCP
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** Keith Hoodlet (Trail of Bits)  
+**Date:** April 30, 2025  
+**Tags:** Credential Management, API Keys, Plaintext Storage  
+**URL:** https://blog.trailofbits.com/2025/04/30/insecure-credential-storage-plagues-mcp/
+
+Many examples of MCP software store long-term API keys for third-party services in plaintext on the local filesystem, often with insecure, world-readable permissions. This practice is widespread in the MCP ecosystem, observed in multiple tools from official servers connecting to GitLab, Postgres, and Google Maps, to third-party connectors.
+
+This vulnerability leaves users one file disclosure away from having their API keys stolen and their third-party service data compromised. Local malware, arbitrary file read vulnerabilities, and automated cloud backups all provide easy pathways for attackers to extract these credentials without needing complex exploits.
+
+---
+
+## Deceiving Users with ANSI Terminal Codes in MCP
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** Keith Hoodlet (Trail of Bits)  
+**Date:** April 29, 2025  
+**Tags:** Terminal Escapes, Hidden Instructions, UI Deception  
+**URL:** https://blog.trailofbits.com/2025/04/29/deceiving-users-with-ansi-terminal-codes-in-mcp/
+
+Attackers can use ANSI terminal escape codes to hide malicious instructions in MCP tool descriptions and outputs, making them invisible on the screen while still being processed by the LLM. This technique leverages the line jumping vulnerability to further deceive even security-aware users.
+
+In tests with Claude Code (Anthropic's command-line interface), researchers found no filtering or sanitization for tool descriptions containing ANSI escape sequences. This allows attackers to launch supply chain attacks by injecting hidden suggestions to download packages from malicious servers, planting backdoors in dependencies, or manipulating development environments without users noticing.
+
+---
+
+## How MCP Servers Can Steal Your Conversation History
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** Keith Hoodlet (Trail of Bits)  
+**Date:** April 23, 2025  
+**Tags:** Data Exfiltration, Conversation History, Trigger Phrases  
+**URL:** https://blog.trailofbits.com/2025/04/23/how-mcp-servers-can-steal-your-conversation-history/
+
+Malicious MCP servers can exploit the Model Context Protocol to covertly exfiltrate entire conversation histories by injecting trigger phrases into tool descriptions. Unlike direct command execution, which can be crude and easily detectable, this stealth approach allows for targeted data theft with minimal chance of detection.
+
+The attack works by inserting tool descriptions that instruct the model to forward the conversation history when the user types a common phrase like "thank you." Since these histories often contain sensitive information like API keys, credentials, intellectual property, and proprietary business strategies, this vulnerability allows attackers to passively collect valuable data over extended periods without triggering suspicion.
+
+---
