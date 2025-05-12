@@ -302,11 +302,135 @@
             color: var(--primary-color);
         }
         
-        .section-title {
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            margin-bottom: 0;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--primary-color);
             font-size: 1.8rem;
+        }
+        
+        /* View toggle styles */
+        .view-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+        
+        .view-toggle button {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .view-toggle button:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .view-toggle button:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .view-toggle button.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* List view styles */
+        .issues-list {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .issues-list.active {
+            display: flex;
+        }
+        
+        .issues-grid.active {
+            display: grid;
+        }
+        
+        .issues-grid:not(.active), .issues-list:not(.active) {
+            display: none;
+        }
+        
+        .list-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .list-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .list-item-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+        
+        .list-severity {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .list-severity.high {
+            background-color: var(--high-severity);
+        }
+        
+        .list-severity.medium {
+            background-color: var(--medium-severity);
+        }
+        
+        .list-severity.low {
+            background-color: var(--low-severity);
+        }
+        
+        .list-title {
+            font-weight: bold;
+            flex: 1;
+        }
+        
+        .list-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .list-category {
+            width: 120px;
+            text-align: center;
+        }
+        
+        .list-date {
+            width: 100px;
+            text-align: right;
+        }
+        
+        .list-actions {
+            margin-left: 1rem;
         }
 
         /* Detail page styles */
@@ -487,10 +611,20 @@
             <button class="filter-btn" data-severity="low">Low Severity</button>
         </div>
         
-        <h2 class="section-title">Recently Discovered Issues</h2>
+        <div class="section-header">
+            <h2 class="section-title">Recently Discovered Issues</h2>
+            <div class="view-toggle">
+                <button id="grid-view-btn" class="active"><i class="fas fa-th"></i> Grid</button>
+                <button id="list-view-btn"><i class="fas fa-list"></i> List</button>
+            </div>
+        </div>
         
-        <div class="issues-grid">
+        <div class="issues-grid active">
             <!-- VULNERABILITIES_PLACEHOLDER -->
+        </div>
+        
+        <div class="issues-list">
+            <!-- VULNERABILITIES_LIST_PLACEHOLDER -->
         </div>
     </main>
     
@@ -512,16 +646,37 @@
     </footer>
 
     <script>
-        // Simple search and filter functionality
+        // Search, filter and view toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('search-input');
             const issueCards = document.querySelectorAll('.issue-card');
+            const listItems = document.querySelectorAll('.list-item');
             const filterButtons = document.querySelectorAll('.filter-btn');
+            const gridViewBtn = document.getElementById('grid-view-btn');
+            const listViewBtn = document.getElementById('list-view-btn');
+            const issuesGrid = document.querySelector('.issues-grid');
+            const issuesList = document.querySelector('.issues-list');
+            
+            // View toggle functionality
+            gridViewBtn.addEventListener('click', function() {
+                gridViewBtn.classList.add('active');
+                listViewBtn.classList.remove('active');
+                issuesGrid.classList.add('active');
+                issuesList.classList.remove('active');
+            });
+            
+            listViewBtn.addEventListener('click', function() {
+                listViewBtn.classList.add('active');
+                gridViewBtn.classList.remove('active');
+                issuesList.classList.add('active');
+                issuesGrid.classList.remove('active');
+            });
             
             // Search functionality
             searchInput.addEventListener('keyup', function() {
                 const searchTerm = this.value.toLowerCase();
                 
+                // Search in grid view
                 issueCards.forEach(card => {
                     const title = card.querySelector('.issue-title').textContent.toLowerCase();
                     const description = card.querySelector('.issue-description').textContent.toLowerCase();
@@ -531,6 +686,18 @@
                         card.style.display = 'block';
                     } else {
                         card.style.display = 'none';
+                    }
+                });
+                
+                // Search in list view
+                listItems.forEach(item => {
+                    const title = item.querySelector('.list-title').textContent.toLowerCase();
+                    const category = item.querySelector('.list-category').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || category.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
                     }
                 });
             });
@@ -546,12 +713,23 @@
                     const filter = this.getAttribute('data-filter');
                     const severityFilter = this.getAttribute('data-severity');
                     
+                    // Filter grid view
                     issueCards.forEach(card => {
                         if (filter === 'all' || card.getAttribute('data-category') === filter || 
                             (severityFilter && card.getAttribute('data-severity') === severityFilter)) {
                             card.style.display = 'block';
                         } else {
                             card.style.display = 'none';
+                        }
+                    });
+                    
+                    // Filter list view
+                    listItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter || 
+                            (severityFilter && item.getAttribute('data-severity') === severityFilter)) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
                         }
                     });
                 });

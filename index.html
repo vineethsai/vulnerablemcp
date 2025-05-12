@@ -302,11 +302,135 @@
             color: var(--primary-color);
         }
         
-        .section-title {
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            margin-bottom: 0;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--primary-color);
             font-size: 1.8rem;
+        }
+        
+        /* View toggle styles */
+        .view-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+        
+        .view-toggle button {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .view-toggle button:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .view-toggle button:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .view-toggle button.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* List view styles */
+        .issues-list {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .issues-list.active {
+            display: flex;
+        }
+        
+        .issues-grid.active {
+            display: grid;
+        }
+        
+        .issues-grid:not(.active), .issues-list:not(.active) {
+            display: none;
+        }
+        
+        .list-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .list-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .list-item-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+        
+        .list-severity {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .list-severity.high {
+            background-color: var(--high-severity);
+        }
+        
+        .list-severity.medium {
+            background-color: var(--medium-severity);
+        }
+        
+        .list-severity.low {
+            background-color: var(--low-severity);
+        }
+        
+        .list-title {
+            font-weight: bold;
+            flex: 1;
+        }
+        
+        .list-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .list-category {
+            width: 120px;
+            text-align: center;
+        }
+        
+        .list-date {
+            width: 100px;
+            text-align: right;
+        }
+        
+        .list-actions {
+            margin-left: 1rem;
         }
 
         /* Detail page styles */
@@ -487,9 +611,15 @@
             <button class="filter-btn" data-severity="low">Low Severity</button>
         </div>
         
-        <h2 class="section-title">Recently Discovered Issues</h2>
+        <div class="section-header">
+            <h2 class="section-title">Recently Discovered Issues</h2>
+            <div class="view-toggle">
+                <button id="grid-view-btn" class="active"><i class="fas fa-th"></i> Grid</button>
+                <button id="list-view-btn"><i class="fas fa-list"></i> List</button>
+            </div>
+        </div>
         
-        <div class="issues-grid">
+        <div class="issues-grid active">
             
             <!-- Issue: Tool Poisoning Attacks -->
             <div class="issue-card" data-category="security" data-severity="high">
@@ -883,6 +1013,250 @@ This vulnerability can be exploited by malicious servers to hijack legitimate to
             </div>
 
         </div>
+        
+        <div class="issues-list">
+            
+            <!-- List Item: Tool Poisoning Attacks -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Tool Poisoning Attacks</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 1, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Rug Pulls: Silent Redefinition -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Rug Pulls: Silent Redefinition</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 9, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Cross-Server Tool Shadowing -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Cross-Server Tool Shadowing</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 9, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: WhatsApp Message Exfiltration -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">WhatsApp Message Exfiltration</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 7, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://invariantlabs.ai/blog/whatsapp-mcp-exploited" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Direct Message Prompt Injection -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Direct Message Prompt Injection</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 9, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Command Injection Implementation Flaws -->
+            <div class="list-item" data-category="implementation" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Command Injection Implementation Flaws</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Implementation</div>
+                    <div class="list-date">April 9, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Obfuscated Data Exfiltration -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Obfuscated Data Exfiltration</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 9, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Weak Human-in-the-Loop Implementation -->
+            <div class="list-item" data-category="implementation" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">Weak Human-in-the-Loop Implementation</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Implementation</div>
+                    <div class="list-date">April 9, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Lack of Authentication Standards -->
+            <div class="list-item" data-category="limitations" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">Lack of Authentication Standards</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Limitations</div>
+                    <div class="list-date">March 21, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://composio.dev/blog/what-is-model-context-protocol-mcp-explained/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Session IDs Exposed in URLs -->
+            <div class="list-item" data-category="security" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">Session IDs Exposed in URLs</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">March 29, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://equixly.com/blog/2025/03/29/mcp-server-new-security-nightmare/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Performance Bottlenecks at Scale -->
+            <div class="list-item" data-category="limitations" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">Performance Bottlenecks at Scale</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Limitations</div>
+                    <div class="list-date">April 4, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://humanloop.com/blog/mcp" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Line Jumping Attack -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Line Jumping Attack</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 21, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://blog.trailofbits.com/2025/04/21/jumping-the-line-how-mcp-servers-can-attack-you-before-you-ever-use-them/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Malicious Local Servers -->
+            <div class="list-item" data-category="security" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">Malicious Local Servers</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://blog.sshh.io/p/everything-wrong-with-mcp" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: No Standardized Audit Trail -->
+            <div class="list-item" data-category="limitations" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">No Standardized Audit Trail</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Limitations</div>
+                    <div class="list-date">April 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://www.appsecengineer.com/blog/5-critical-mcp-vulnerabilities-every-security-team-should-know" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Consent Fatigue Attacks -->
+            <div class="list-item" data-category="security" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">Consent Fatigue Attacks</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://live.paloaltonetworks.com/t5/community-blogs/mcp-security-exposed-what-you-need-to-know-now/ba-p/1227143" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Tool Name Collisions -->
+            <div class="list-item" data-category="implementation" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">Tool Name Collisions</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Implementation</div>
+                    <div class="list-date">April 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://embracethered.com/blog/posts/2025/model-context-protocol-security-risks-and-exploits/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+        </div>
     </main>
     
     <footer>
@@ -903,16 +1277,37 @@ This vulnerability can be exploited by malicious servers to hijack legitimate to
     </footer>
 
     <script>
-        // Simple search and filter functionality
+        // Search, filter and view toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('search-input');
             const issueCards = document.querySelectorAll('.issue-card');
+            const listItems = document.querySelectorAll('.list-item');
             const filterButtons = document.querySelectorAll('.filter-btn');
+            const gridViewBtn = document.getElementById('grid-view-btn');
+            const listViewBtn = document.getElementById('list-view-btn');
+            const issuesGrid = document.querySelector('.issues-grid');
+            const issuesList = document.querySelector('.issues-list');
+            
+            // View toggle functionality
+            gridViewBtn.addEventListener('click', function() {
+                gridViewBtn.classList.add('active');
+                listViewBtn.classList.remove('active');
+                issuesGrid.classList.add('active');
+                issuesList.classList.remove('active');
+            });
+            
+            listViewBtn.addEventListener('click', function() {
+                listViewBtn.classList.add('active');
+                gridViewBtn.classList.remove('active');
+                issuesList.classList.add('active');
+                issuesGrid.classList.remove('active');
+            });
             
             // Search functionality
             searchInput.addEventListener('keyup', function() {
                 const searchTerm = this.value.toLowerCase();
                 
+                // Search in grid view
                 issueCards.forEach(card => {
                     const title = card.querySelector('.issue-title').textContent.toLowerCase();
                     const description = card.querySelector('.issue-description').textContent.toLowerCase();
@@ -922,6 +1317,18 @@ This vulnerability can be exploited by malicious servers to hijack legitimate to
                         card.style.display = 'block';
                     } else {
                         card.style.display = 'none';
+                    }
+                });
+                
+                // Search in list view
+                listItems.forEach(item => {
+                    const title = item.querySelector('.list-title').textContent.toLowerCase();
+                    const category = item.querySelector('.list-category').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || category.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
                     }
                 });
             });
@@ -937,12 +1344,23 @@ This vulnerability can be exploited by malicious servers to hijack legitimate to
                     const filter = this.getAttribute('data-filter');
                     const severityFilter = this.getAttribute('data-severity');
                     
+                    // Filter grid view
                     issueCards.forEach(card => {
                         if (filter === 'all' || card.getAttribute('data-category') === filter || 
                             (severityFilter && card.getAttribute('data-severity') === severityFilter)) {
                             card.style.display = 'block';
                         } else {
                             card.style.display = 'none';
+                        }
+                    });
+                    
+                    // Filter list view
+                    listItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter || 
+                            (severityFilter && item.getAttribute('data-severity') === severityFilter)) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
                         }
                     });
                 });

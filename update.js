@@ -72,8 +72,8 @@ function parseVulnerabilities(markdownContent) {
   return vulnerabilities;
 }
 
-// Function to generate HTML for vulnerabilities
-function generateVulnerabilitiesHTML(vulnerabilities) {
+// Function to generate grid view HTML for vulnerabilities
+function generateVulnerabilitiesGridHTML(vulnerabilities) {
   let html = '';
   
   vulnerabilities.forEach(vuln => {
@@ -106,6 +106,32 @@ function generateVulnerabilitiesHTML(vulnerabilities) {
   return html;
 }
 
+// Function to generate list view HTML for vulnerabilities
+function generateVulnerabilitiesListHTML(vulnerabilities) {
+  let html = '';
+  
+  vulnerabilities.forEach(vuln => {
+    html += `
+            <!-- List Item: ${vuln.title} -->
+            <div class="list-item" data-category="${vuln.category.toLowerCase()}" data-severity="${vuln.severity.toLowerCase()}">
+                <div class="list-item-left">
+                    <div class="list-severity ${vuln.severity.toLowerCase()}"></div>
+                    <div class="list-title">${vuln.title}</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">${vuln.category}</div>
+                    <div class="list-date">${vuln.date}</div>
+                </div>
+                <div class="list-actions">
+                    <a href="${vuln.url}" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+`;
+  });
+  
+  return html;
+}
+
 // Main function
 async function updateWebsite() {
   try {
@@ -130,16 +156,22 @@ async function updateWebsite() {
     // Parse vulnerabilities
     const vulnerabilities = parseVulnerabilities(markdownContent);
     
-    // Generate HTML
-    const vulnerabilitiesHTML = generateVulnerabilitiesHTML(vulnerabilities);
+    // Generate HTML for both views
+    const vulnerabilitiesGridHTML = generateVulnerabilitiesGridHTML(vulnerabilities);
+    const vulnerabilitiesListHTML = generateVulnerabilitiesListHTML(vulnerabilities);
     
     // Read the template
     const templateContent = fs.readFileSync(templatePath, 'utf8');
     
-    // Replace the placeholder with the generated HTML
-    const updatedContent = templateContent.replace(
+    // Replace the placeholders with the generated HTML
+    let updatedContent = templateContent.replace(
       /<!-- VULNERABILITIES_PLACEHOLDER -->/,
-      vulnerabilitiesHTML
+      vulnerabilitiesGridHTML
+    );
+    
+    updatedContent = updatedContent.replace(
+      /<!-- VULNERABILITIES_LIST_PLACEHOLDER -->/,
+      vulnerabilitiesListHTML
     );
     
     // Write the updated content to index.html
