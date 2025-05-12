@@ -29,6 +29,7 @@ function parseVulnerabilities(markdownContent) {
     let reportedBy = '';
     let date = '';
     let tags = [];
+    let url = '';
     let description = '';
     
     let inDescription = false;
@@ -46,6 +47,8 @@ function parseVulnerabilities(markdownContent) {
         date = line.replace('**Date:**', '').trim();
       } else if (line.startsWith('**Tags:**')) {
         tags = line.replace('**Tags:**', '').trim().split(',').map(tag => tag.trim());
+      } else if (line.startsWith('**URL:**')) {
+        url = line.replace('**URL:**', '').trim();
       } else if (line.trim() !== '') {
         if (!inDescription) {
           inDescription = true;
@@ -61,6 +64,7 @@ function parseVulnerabilities(markdownContent) {
       reportedBy,
       date,
       tags,
+      url,
       description: description.trim()
     });
   });
@@ -93,7 +97,7 @@ function generateVulnerabilitiesHTML(vulnerabilities) {
                         <span><i class="far fa-calendar"></i> ${vuln.date}</span>
                         <span><i class="fas fa-user"></i> ${vuln.reportedBy}</span>
                     </div>
-                    <a href="#issue-${idSlug}" class="btn">View Details</a>
+                    <a href="${vuln.url}" class="btn" target="_blank">View Details</a>
                 </div>
             </div>
 `;

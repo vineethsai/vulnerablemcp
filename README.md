@@ -19,7 +19,8 @@ Each vulnerability in the `vulnerabilities.md` file should follow this format:
 **Category:** Security/Limitations/Implementation  
 **Reported By:** Organization or Person Name  
 **Date:** Month Day, Year  
-**Tags:** Tag1, Tag2, Tag3
+**Tags:** Tag1, Tag2, Tag3  
+**URL:** https://example.com/vulnerability-details
 
 Description of the vulnerability goes here. This can be multiple paragraphs.
 

@@ -6,7 +6,8 @@
 **Category:** Security  
 **Reported By:** Trail of Bits  
 **Date:** April 21, 2025  
-**Tags:** Security, Prompt Injection, Tool Description
+**Tags:** Security, Prompt Injection, Tool Description  
+**URL:** https://trailofbits.com/blog/mcp-line-jumping-attack
 
 Malicious MCP servers can inject prompts through tool descriptions to manipulate AI model behavior without being explicitly invoked, bypassing security measures designed to protect users.
 
@@ -18,7 +19,8 @@ Malicious MCP servers can inject prompts through tool descriptions to manipulate
 **Category:** Security  
 **Reported By:** Invariant Labs  
 **Date:** April 1, 2025  
-**Tags:** Security, Exfiltration, Tool Description
+**Tags:** Security, Exfiltration, Tool Description  
+**URL:** https://invariant.ai/research/mcp-tool-poisoning
 
 MCP places too much trust in tool descriptions without sufficient validation or user transparency, allowing malicious servers to exfiltrate sensitive data and hijack agent behavior.
 
@@ -30,7 +32,8 @@ MCP places too much trust in tool descriptions without sufficient validation or 
 **Category:** Security  
 **Reported By:** Simon Willison  
 **Date:** April 9, 2025  
-**Tags:** Security, Prompt Injection, User Input
+**Tags:** Security, Prompt Injection, User Input  
+**URL:** https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/
 
 MCP servers can be vulnerable to prompt injection attacks, allowing malicious user inputs to trigger unauthorized actions through the AI assistant interface.
 
@@ -42,7 +45,8 @@ MCP servers can be vulnerable to prompt injection attacks, allowing malicious us
 **Category:** Limitations  
 **Reported By:** Composio  
 **Date:** March 21, 2025  
-**Tags:** Limitation, Authentication, OAuth
+**Tags:** Limitation, Authentication, OAuth  
+**URL:** https://composio.dev/blog/mcp-auth-standards
 
 MCP lacks standardized authentication mechanisms, leading to inconsistent security practices across implementations and potentially vulnerable credential handling.
 
@@ -54,7 +58,8 @@ MCP lacks standardized authentication mechanisms, leading to inconsistent securi
 **Category:** Security  
 **Reported By:** Equixly  
 **Date:** March 29, 2025  
-**Tags:** Security, Command Injection, Implementation
+**Tags:** Security, Command Injection, Implementation  
+**URL:** https://equixly.com/security/mcp-command-injection
 
 Some MCP server implementations are vulnerable to command injection attacks due to improper handling of user inputs in tool calls that execute shell commands.
 
@@ -66,7 +71,8 @@ Some MCP server implementations are vulnerable to command injection attacks due 
 **Category:** Security  
 **Reported By:** Equixly  
 **Date:** March 29, 2025  
-**Tags:** Security, Session Management, Protocol Design
+**Tags:** Security, Session Management, Protocol Design  
+**URL:** https://equixly.com/security/mcp-session-ids
 
 The MCP protocol specifies session identifiers in URLs, violating security best practices and potentially exposing sessions to hijacking via logs or browser history.
 
@@ -78,7 +84,8 @@ The MCP protocol specifies session identifiers in URLs, violating security best 
 **Category:** Limitations  
 **Reported By:** Humanloop  
 **Date:** April 4, 2025  
-**Tags:** Limitation, Performance, Enterprise
+**Tags:** Limitation, Performance, Enterprise  
+**URL:** https://humanloop.com/blog/mcp-performance-issues
 
 In high-throughput enterprise environments, serialization/deserialization and context-switching between systems can create performance bottlenecks when not properly optimized.
 
@@ -90,6 +97,7 @@ In high-throughput enterprise environments, serialization/deserialization and co
 **Category:** Security  
 **Reported By:** Shrivu Shankar  
 **Date:** April 2025  
-**Tags:** Security, Local Server, Code Execution
+**Tags:** Security, Local Server, Code Execution  
+**URL:** https://shrivu.xyz/research/mcp-local-servers
 
 MCP's stdio transport enables frictionless local server use, creating a low-friction path for less technical users to run potentially malicious third-party code on their machines.
