@@ -3,7 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A community-maintained database of known vulnerabilities, limitations, and security concerns with the Model Context Protocol (MCP)">
+    <meta name="keywords" content="MCP, Model Context Protocol, vulnerabilities, security, AI safety, LLM security, prompt injection">
+    <meta name="author" content="Vineeth Sai">
+    <meta property="og:title" content="The Vulnerable MCP Project">
+    <meta property="og:description" content="A community-maintained database of known vulnerabilities, limitations, and security concerns with the Model Context Protocol (MCP)">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vineethsai.github.io/vulnerablemcp/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Vulnerable MCP Project">
+    <meta name="twitter:description" content="A community-maintained database of known vulnerabilities, limitations, and security concerns with the Model Context Protocol (MCP)">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="canonical" href="https://vineethsai.github.io/vulnerablemcp/">
     <title>The Vulnerable MCP Project: Tracking Model Context Protocol Vulnerabilities</title>
+    
+    <!-- Structured Data for better SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "The Vulnerable MCP Project",
+      "url": "https://vineethsai.github.io/vulnerablemcp/",
+      "description": "A community-maintained database of known vulnerabilities, limitations, and security concerns with the Model Context Protocol (MCP)",
+      "author": {
+        "@type": "Person",
+        "name": "Vineeth Sai",
+        "url": "https://vineethsai.com"
+      }
+    }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -429,6 +459,50 @@
         .social-links a:hover {
             color: var(--primary-color);
         }
+        
+        /* About Section Styles */
+        .about-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .about-section p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
 
         /* Responsive design */
         @media (max-width: 768px) {
@@ -465,8 +539,7 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <i class="fas fa-shield-alt"></i>
-                <span>The Vulnerable MCP Project</span>
+                <h1><a href="#">The Vulnerable MCP Project</a></h1>
             </div>
             <nav>
                 <ul>
@@ -489,6 +562,26 @@
     </section>
     
     <main class="container">
+        <section id="about" class="about-section">
+            <h2>About The Vulnerable MCP Project</h2>
+            <p>The Vulnerable MCP Project is a community-maintained database that tracks known vulnerabilities, limitations, and security concerns with the Model Context Protocol (MCP). Our mission is to help developers, security researchers, and organizations understand and mitigate the risks associated with implementing MCP in their AI systems.</p>
+            <p>Model Context Protocol (MCP) enables AI systems to access tools and external resources, but this capability introduces new security challenges. By documenting these vulnerabilities, we aim to promote safer implementation practices and contribute to the overall security of AI systems.</p>
+            <div class="about-features">
+                <div class="feature">
+                    <h3>Community-Driven</h3>
+                    <p>This project relies on contributions from security researchers, AI developers, and the broader tech community.</p>
+                </div>
+                <div class="feature">
+                    <h3>Regularly Updated</h3>
+                    <p>New vulnerabilities and mitigation strategies are added as they are discovered and verified.</p>
+                </div>
+                <div class="feature">
+                    <h3>Open Source</h3>
+                    <p>All content is freely available and can be contributed to via our GitHub repository.</p>
+                </div>
+            </div>
+        </section>
+        
         <div class="search-bar">
             <input type="text" placeholder="Search issues, vulnerabilities, or keywords..." id="search-input">
             <button type="submit"><i class="fas fa-search"></i></button>
