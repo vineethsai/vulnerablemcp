@@ -1,4 +1,4 @@
-# Vulnerable MCP - Tracking Model Context Protocol Vulnerabilities
+# The Vulnerable MCP Project
 
 This project tracks known vulnerabilities within Model Context Protocol (MCP) servers. The website is designed to be easily updated by modifying a markdown file instead of directly editing HTML.
 
