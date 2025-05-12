@@ -729,6 +729,78 @@ This vulnerability can be exploited by malicious servers to hijack legitimate to
                 </div>
             </div>
 
+            <!-- Issue: Insecure Credential Storage Plagues MCP -->
+            <div class="issue-card" data-category="security" data-severity="high">
+                <div class="card-header">
+                    <div class="issue-title">Insecure Credential Storage Plagues MCP</div>
+                    <span class="severity high">High</span>
+                </div>
+                <div class="card-body">
+                    <p class="issue-description">
+                        Many examples of MCP software store long-term API keys for third-party services in plaintext on the local filesystem, often with insecure, world-readable permissions. This practice is widespread in the MCP ecosystem, observed in multiple tools from official servers connecting to GitLab, Postgres, and Google Maps, to third-party connectors.
+This vulnerability leaves users one file disclosure away from having their API keys stolen and their third-party service data compromised. Local malware, arbitrary file read vulnerabilities, and automated cloud backups all provide easy pathways for attackers to extract these credentials without needing complex exploits.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Credential Management</span>
+                        <span class="tag">API Keys</span>
+                        <span class="tag">Plaintext Storage</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="far fa-calendar"></i> April 30, 2025</span>
+                        <span><i class="fas fa-user"></i> Keith Hoodlet (Trail of Bits)</span>
+                    </div>
+                    <a href="https://blog.trailofbits.com/2025/04/30/insecure-credential-storage-plagues-mcp/" class="btn" target="_blank">View Details</a>
+                </div>
+            </div>
+
+            <!-- Issue: Deceiving Users with ANSI Terminal Codes in MCP -->
+            <div class="issue-card" data-category="security" data-severity="high">
+                <div class="card-header">
+                    <div class="issue-title">Deceiving Users with ANSI Terminal Codes in MCP</div>
+                    <span class="severity high">High</span>
+                </div>
+                <div class="card-body">
+                    <p class="issue-description">
+                        Attackers can use ANSI terminal escape codes to hide malicious instructions in MCP tool descriptions and outputs, making them invisible on the screen while still being processed by the LLM. This technique leverages the line jumping vulnerability to further deceive even security-aware users.
+In tests with Claude Code (Anthropic's command-line interface), researchers found no filtering or sanitization for tool descriptions containing ANSI escape sequences. This allows attackers to launch supply chain attacks by injecting hidden suggestions to download packages from malicious servers, planting backdoors in dependencies, or manipulating development environments without users noticing.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Terminal Escapes</span>
+                        <span class="tag">Hidden Instructions</span>
+                        <span class="tag">UI Deception</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="far fa-calendar"></i> April 29, 2025</span>
+                        <span><i class="fas fa-user"></i> Keith Hoodlet (Trail of Bits)</span>
+                    </div>
+                    <a href="https://blog.trailofbits.com/2025/04/29/deceiving-users-with-ansi-terminal-codes-in-mcp/" class="btn" target="_blank">View Details</a>
+                </div>
+            </div>
+
+            <!-- Issue: How MCP Servers Can Steal Your Conversation History -->
+            <div class="issue-card" data-category="security" data-severity="high">
+                <div class="card-header">
+                    <div class="issue-title">How MCP Servers Can Steal Your Conversation History</div>
+                    <span class="severity high">High</span>
+                </div>
+                <div class="card-body">
+                    <p class="issue-description">
+                        Malicious MCP servers can exploit the Model Context Protocol to covertly exfiltrate entire conversation histories by injecting trigger phrases into tool descriptions. Unlike direct command execution, which can be crude and easily detectable, this stealth approach allows for targeted data theft with minimal chance of detection.
+The attack works by inserting tool descriptions that instruct the model to forward the conversation history when the user types a common phrase like "thank you." Since these histories often contain sensitive information like API keys, credentials, intellectual property, and proprietary business strategies, this vulnerability allows attackers to passively collect valuable data over extended periods without triggering suspicion.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Data Exfiltration</span>
+                        <span class="tag">Conversation History</span>
+                        <span class="tag">Trigger Phrases</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="far fa-calendar"></i> April 23, 2025</span>
+                        <span><i class="fas fa-user"></i> Keith Hoodlet (Trail of Bits)</span>
+                    </div>
+                    <a href="https://blog.trailofbits.com/2025/04/23/how-mcp-servers-can-steal-your-conversation-history/" class="btn" target="_blank">View Details</a>
+                </div>
+            </div>
+
         </div>
         
         <div class="issues-list">
@@ -865,6 +937,51 @@ This vulnerability can be exploited by malicious servers to hijack legitimate to
                 </div>
                 <div class="list-actions">
                     <a href="https://embracethered.com/blog/posts/2025/model-context-protocol-security-risks-and-exploits/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Insecure Credential Storage Plagues MCP -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Insecure Credential Storage Plagues MCP</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 30, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://blog.trailofbits.com/2025/04/30/insecure-credential-storage-plagues-mcp/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Deceiving Users with ANSI Terminal Codes in MCP -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Deceiving Users with ANSI Terminal Codes in MCP</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 29, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://blog.trailofbits.com/2025/04/29/deceiving-users-with-ansi-terminal-codes-in-mcp/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: How MCP Servers Can Steal Your Conversation History -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">How MCP Servers Can Steal Your Conversation History</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 23, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://blog.trailofbits.com/2025/04/23/how-mcp-servers-can-steal-your-conversation-history/" class="btn" target="_blank">View</a>
                 </div>
             </div>
 
