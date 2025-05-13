@@ -37,29 +37,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2a3990;
-            --secondary-color: #6574cd;
-            --accent-color: #ff5e5b;
-            --text-color: #333;
-            --light-bg: #f8f9fa;
-            --dark-bg: #343a40;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
-            --info-color: #17a2b8;
+            --primary-color: #4285f4;
+            --secondary-color: #293846;
+            --accent-color: #ea4335;
+            --light-color: #f8f9fa;
+            --dark-color: #202124;
+            --high-severity: #ea4335;
+            --medium-severity: #fbbc05;
+            --low-severity: #4285f4;
+            --info-severity: #5f6368;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--light-bg);
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.7;
+            font-size: 16px;
         }
         
         .container {
@@ -69,43 +72,154 @@
         }
         
         header {
-            background-color: var(--dark-bg);
+            background-color: var(--secondary-color);
             color: white;
-            padding: 1rem 0;
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
         
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 1rem;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: white;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.5px;
         }
         
         .logo h1 a {
             color: white;
             text-decoration: none;
-            font-size: 1.5rem;
+        }
+        
+        .logo h1::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--primary-color);
+            border-radius: 4px;
+            background-color: transparent;
+            margin-right: 12px;
+            transition: var(--transition);
+        }
+        
+        .logo:hover h1::before {
+            transform: rotate(45deg);
+            background-color: rgba(66, 133, 244, 0.2);
         }
         
         nav ul {
             display: flex;
             list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 1.5rem;
+            gap: 2rem;
         }
         
         nav ul li a {
             color: white;
             text-decoration: none;
-            transition: color 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding-bottom: 3px;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover::after, nav ul li a.active::after {
+            width: 100%;
         }
         
         nav ul li a:hover, nav ul li a.active {
-            color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding-bottom: 3px;
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container, .footer-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .footer-left, .footer-right {
+                text-align: center;
+            }
         }
         
         .hero {
@@ -257,10 +371,8 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="https://roqwvequ.genspark.space/" target="_blank">Enterprise Security</a></li>
+                    <li><a href="security.html">Security</a></li>
                     <li><a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">Contribute</a></li>
-                    <li><a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">GitHub</a></li>
-                    <li><a href="https://vineethsai.com" target="_blank">Author</a></li>
                 </ul>
             </nav>
         </div>
@@ -313,20 +425,17 @@
     
     <footer>
         <div class="footer-container">
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="https://roqwvequ.genspark.space/" target="_blank">Enterprise Security</a>
-                <a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">Contribute</a>
-                <a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">GitHub</a>
-                <a href="https://vineethsai.com" target="_blank">Author</a>
+            <div class="footer-left">
+                <p>&copy; 2025 The Vulnerable MCP Project. All rights reserved.</p>
             </div>
-            <div class="social-links">
-                <a href="https://github.com/vineethsai" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/vineethsai/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://vineethsai.com" target="_blank"><i class="fas fa-globe"></i></a>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="security.html">Security</a>
+                    <a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">Contribute</a>
+                </div>
             </div>
-            <p>&copy; 2025 The Vulnerable MCP Project. All rights reserved.</p>
         </div>
     </footer>
 </body>
