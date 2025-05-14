@@ -178,3 +178,17 @@ Malicious MCP servers can exploit the Model Context Protocol to covertly exfiltr
 The attack works by inserting tool descriptions that instruct the model to forward the conversation history when the user types a common phrase like "thank you." Since these histories often contain sensitive information like API keys, credentials, intellectual property, and proprietary business strategies, this vulnerability allows attackers to passively collect valuable data over extended periods without triggering suspicion.
 
 ---
+## How Agentic Tools hosted on MCP Servers can be Exploited
+
+**Severity:** High
+**Category:** Security
+**Reported By:** Akram Sheriff 
+**Date:** May 13, 2025  
+**Tags:** Agentic Tool Manipulation, MCP Server compromise, Agentic Security Threat, Agentic Tool Exploitation, RCE
+**gitURL:** https://github.com/akramIOT/vulnerablemcp
+**URL:** https://www.linkedin.com/pulse/how-agentic-tools-hosted-mcp-servers-can-exploited-akram-sheriff/
+
+**Description:**
+Agentic tools hosted on MCP servers can be exploited by malicious actors to manipulate the behavior of the agentic tool itself. This can lead to unauthorized actions, data exfiltration, and other security breaches.
+
+---
