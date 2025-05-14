@@ -185,8 +185,8 @@ The attack works by inserting tool descriptions that instruct the model to forwa
 **Reported By:** Akram Sheriff 
 **Date:** May 13, 2025  
 **Tags:** Agentic Tool Manipulation, MCP Server compromise, Agentic Security Threat, Agentic Tool Exploitation, RCE
-**gitURL:** https://github.com/akramIOT/vulnerablemcp
-**URL:** https://www.linkedin.com/pulse/how-agentic-tools-hosted-mcp-servers-can-exploited-akram-sheriff/
+**gitURL:** https://github.com/akramIOT/insecured_mcp_server
+**URL:** https://medium.com/p/843583d37d32/
 
 **Description:**
 Agentic tools hosted on MCP servers can be exploited by malicious actors to manipulate the behavior of the agentic tool itself. This can lead to unauthorized actions, data exfiltration, and other security breaches.
