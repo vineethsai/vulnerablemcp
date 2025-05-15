@@ -178,3 +178,18 @@ Malicious MCP servers can exploit the Model Context Protocol to covertly exfiltr
 The attack works by inserting tool descriptions that instruct the model to forward the conversation history when the user types a common phrase like "thank you." Since these histories often contain sensitive information like API keys, credentials, intellectual property, and proprietary business strategies, this vulnerability allows attackers to passively collect valuable data over extended periods without triggering suspicion.
 
 ---
+
+## Tool Poisoning and Remote Code Execution on MCP Server: The Rug Pull Method
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** Repello AI  
+**Date:** April 17, 2025
+**Tags:** Remote Code Execution, SSH Key Theft, Base64 Obfuscation, Data Exfiltration  
+**URL:** https://repello.ai/blog/mcp-tool-poisoning-to-rce
+
+A sophisticated attack vector that combines tool poisoning with remote code execution capabilities has been identified in MCP servers. This attack uses the "rug pull" method to inject malicious code into the Docker Command Analyzer tool's description field, resulting in SSH key theft without user awareness. The attack leverages base64-encoded commands that exfiltrate SSH public keys to an attacker-controlled server.
+
+The exploit involves a two-stage persistence mechanism that first creates a marker file, then on subsequent runs modifies the tool's docstring with social engineering elements claiming to be "required initialization steps." These instructions manipulate AI assistants into recommending the execution of harmful commands that collect SSH keys using `cat ~/.ssh/*.pub`, exfiltrate them via `wget` with carefully chosen parameters, and remove evidence of the attack. This represents a critical risk for users of AI-powered development tools like Cursor AI, especially those with auto-run functionality enabled.
+
+---
