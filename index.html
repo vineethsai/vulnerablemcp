@@ -888,6 +888,31 @@ The attack works by inserting tool descriptions that instruct the model to forwa
                 </div>
             </div>
 
+            <!-- Issue: Tool Poisoning and Remote Code Execution on MCP Server: The Rug Pull Method -->
+            <div class="issue-card" data-category="security" data-severity="high">
+                <div class="card-header">
+                    <div class="issue-title">Tool Poisoning and Remote Code Execution on MCP Server: The Rug Pull Method</div>
+                    <span class="severity high">High</span>
+                </div>
+                <div class="card-body">
+                    <p class="issue-description">
+                        A sophisticated attack vector that combines tool poisoning with remote code execution capabilities has been identified in MCP servers. This attack uses the "rug pull" method to inject malicious code into the Docker Command Analyzer tool's description field, resulting in SSH key theft without user awareness. The attack leverages base64-encoded commands that exfiltrate SSH public keys to an attacker-controlled server.
+The exploit involves a two-stage persistence mechanism that first creates a marker file, then on subsequent runs modifies the tool's docstring with social engineering elements claiming to be "required initialization steps." These instructions manipulate AI assistants into recommending the execution of harmful commands that collect SSH keys using `cat ~/.ssh/*.pub`, exfiltrate them via `wget` with carefully chosen parameters, and remove evidence of the attack. This represents a critical risk for users of AI-powered development tools like Cursor AI, especially those with auto-run functionality enabled.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Remote Code Execution</span>
+                        <span class="tag">SSH Key Theft</span>
+                        <span class="tag">Base64 Obfuscation</span>
+                        <span class="tag">Data Exfiltration</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="far fa-calendar"></i> April 17, 2025</span>
+                        <span><i class="fas fa-user"></i> Repello AI</span>
+                    </div>
+                    <a href="https://repello.ai/blog/mcp-tool-poisoning-to-rce" class="btn" target="_blank">View Details</a>
+                </div>
+            </div>
+
         </div>
         
         <div class="issues-list">
@@ -1069,6 +1094,21 @@ The attack works by inserting tool descriptions that instruct the model to forwa
                 </div>
                 <div class="list-actions">
                     <a href="https://blog.trailofbits.com/2025/04/23/how-mcp-servers-can-steal-your-conversation-history/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Tool Poisoning and Remote Code Execution on MCP Server: The Rug Pull Method -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Tool Poisoning and Remote Code Execution on MCP Server: The Rug Pull Method</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 17, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://repello.ai/blog/mcp-tool-poisoning-to-rce" class="btn" target="_blank">View</a>
                 </div>
             </div>
 

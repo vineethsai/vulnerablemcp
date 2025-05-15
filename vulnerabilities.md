@@ -184,7 +184,7 @@ The attack works by inserting tool descriptions that instruct the model to forwa
 **Severity:** High  
 **Category:** Security  
 **Reported By:** Repello AI  
-**Date:** Apr 17, 2025
+**Date:** April 17, 2025
 **Tags:** Remote Code Execution, SSH Key Theft, Base64 Obfuscation, Data Exfiltration  
 **URL:** https://repello.ai/blog/mcp-tool-poisoning-to-rce
 
