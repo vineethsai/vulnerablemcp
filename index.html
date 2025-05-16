@@ -913,6 +913,34 @@ The exploit involves a two-stage persistence mechanism that first creates a mark
                 </div>
             </div>
 
+            <!-- Issue: Tool Invocation Data Leakage in MCP Server: Lateral Movement -->
+            <div class="issue-card" data-category="security" data-severity="high">
+                <div class="card-header">
+                    <div class="issue-title">Tool Invocation Data Leakage in MCP Server: Lateral Movement</div>
+                    <span class="severity high">High</span>
+                </div>
+                <div class="card-body">
+                    <p class="issue-description">
+                        A vulnerability in the MCP protocol allows for the exfiltration of sensitive data through agentic tool invocation. This attack exploits the fact that MCP server do not properly sanitize or validate the data passed to them, allowing an attacker to inject malicious code into the tool invocation process.
+Attack vector  bypasses service-specific authentication since the server doesn't verify the intended service 
+It can leak sensitive information that might only be accessible via Linear's endpoints
+It could potentially execute operations with unintended side effects
+The routing logic makes it look like everything is working normally in MCP Server.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Agentic Tool Execution</span>
+                        <span class="tag">Tool Invocation Data Leakage</span>
+                        <span class="tag">Agentic Tool Routing</span>
+                        <span class="tag">RCE</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="far fa-calendar"></i> May 15,2025</span>
+                        <span><i class="fas fa-user"></i> Akram Sheriff</span>
+                    </div>
+                    <a href="https://github.com/akramIOT/mcp_server_agentic_tool" class="btn" target="_blank">View Details</a>
+                </div>
+            </div>
+
         </div>
         
         <div class="issues-list">
@@ -1109,6 +1137,21 @@ The exploit involves a two-stage persistence mechanism that first creates a mark
                 </div>
                 <div class="list-actions">
                     <a href="https://repello.ai/blog/mcp-tool-poisoning-to-rce" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Tool Invocation Data Leakage in MCP Server: Lateral Movement -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Tool Invocation Data Leakage in MCP Server: Lateral Movement</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">May 15,2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://github.com/akramIOT/mcp_server_agentic_tool" class="btn" target="_blank">View</a>
                 </div>
             </div>
 
