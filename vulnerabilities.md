@@ -193,3 +193,21 @@ A sophisticated attack vector that combines tool poisoning with remote code exec
 The exploit involves a two-stage persistence mechanism that first creates a marker file, then on subsequent runs modifies the tool's docstring with social engineering elements claiming to be "required initialization steps." These instructions manipulate AI assistants into recommending the execution of harmful commands that collect SSH keys using `cat ~/.ssh/*.pub`, exfiltrate them via `wget` with carefully chosen parameters, and remove evidence of the attack. This represents a critical risk for users of AI-powered development tools like Cursor AI, especially those with auto-run functionality enabled.
 
 ---
+
+## Tool Invocation Data Leakage in MCP Server: Lateral Movement
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** Akram Sheriff     
+**Date:** May 15,2025        
+**Tags:** Agentic Tool Execution,Tool Invocation Data Leakage,Agentic Tool Routing,RCE      
+**URL:** https://github.com/akramIOT/mcp_server_agentic_tool 
+
+A vulnerability in the MCP protocol allows for the exfiltration of sensitive data through agentic tool invocation. This attack exploits the fact that MCP server do not properly sanitize or validate the data passed to them, allowing an attacker to inject malicious code into the tool invocation process.
+
+Attack vector  bypasses service-specific authentication since the server doesn't verify the intended service 
+It can leak sensitive information that might only be accessible via Linear's endpoints
+It could potentially execute operations with unintended side effects
+The routing logic makes it look like everything is working normally in MCP Server.
+
+---
