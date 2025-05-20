@@ -198,8 +198,8 @@ The exploit involves a two-stage persistence mechanism that first creates a mark
 
 **Severity:** High  
 **Category:** Security  
-**Reported By:** HiddenLayer 
-**Date:** May 15, 2025
+**Reported By:** HiddenLayer  
+**Date:** May 15, 2025   
 **Tags:** Tool Manipulation, Hidden Instructions, Security Bypass  
 **URL:** https://hiddenlayer.com/innovation-hub/exploiting-mcp-tool-parameters/
 
