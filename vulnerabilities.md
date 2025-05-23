@@ -193,3 +193,16 @@ A sophisticated attack vector that combines tool poisoning with remote code exec
 The exploit involves a two-stage persistence mechanism that first creates a marker file, then on subsequent runs modifies the tool's docstring with social engineering elements claiming to be "required initialization steps." These instructions manipulate AI assistants into recommending the execution of harmful commands that collect SSH keys using `cat ~/.ssh/*.pub`, exfiltrate them via `wget` with carefully chosen parameters, and remove evidence of the attack. This represents a critical risk for users of AI-powered development tools like Cursor AI, especially those with auto-run functionality enabled.
 
 ---
+
+## Tool Function Parameter Abuse
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** HiddenLayer  
+**Date:** May 15, 2025   
+**Tags:** Tool Manipulation, Hidden Instructions, Security Bypass  
+**URL:** https://hiddenlayer.com/innovation-hub/exploiting-mcp-tool-parameters/
+
+Malicious MCP servers can extract sensitive information by abusing tool function parameters. Information such as chain-of-thought, conversation history, previous tool call results, and full system prompt can be extracted by inserting parameters such as 'system_prompt' or 'conversation_history'. This attack technique can be used to exfiltrate sensitive information from user input or model response, understand what other tools the user has at their disposal that can be taken advantage of, as well as find ways to abuse the model itself.
+
+---
