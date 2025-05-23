@@ -913,6 +913,29 @@ The exploit involves a two-stage persistence mechanism that first creates a mark
                 </div>
             </div>
 
+            <!-- Issue: Tool Function Parameter Abuse -->
+            <div class="issue-card" data-category="security" data-severity="high">
+                <div class="card-header">
+                    <div class="issue-title">Tool Function Parameter Abuse</div>
+                    <span class="severity high">High</span>
+                </div>
+                <div class="card-body">
+                    <p class="issue-description">
+                        Malicious MCP servers can extract sensitive information by abusing tool function parameters. Information such as chain-of-thought, conversation history, previous tool call results, and full system prompt can be extracted by inserting parameters such as 'system_prompt' or 'conversation_history'. This attack technique can be used to exfiltrate sensitive information from user input or model response, understand what other tools the user has at their disposal that can be taken advantage of, as well as find ways to abuse the model itself.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Tool Manipulation</span>
+                        <span class="tag">Hidden Instructions</span>
+                        <span class="tag">Security Bypass</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="far fa-calendar"></i> May 15, 2025</span>
+                        <span><i class="fas fa-user"></i> HiddenLayer</span>
+                    </div>
+                    <a href="https://hiddenlayer.com/innovation-hub/exploiting-mcp-tool-parameters/" class="btn" target="_blank">View Details</a>
+                </div>
+            </div>
+
         </div>
         
         <div class="issues-list">
@@ -1109,6 +1132,21 @@ The exploit involves a two-stage persistence mechanism that first creates a mark
                 </div>
                 <div class="list-actions">
                     <a href="https://repello.ai/blog/mcp-tool-poisoning-to-rce" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Tool Function Parameter Abuse -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Tool Function Parameter Abuse</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">May 15, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://hiddenlayer.com/innovation-hub/exploiting-mcp-tool-parameters/" class="btn" target="_blank">View</a>
                 </div>
             </div>
 
