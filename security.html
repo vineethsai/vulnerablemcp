@@ -94,6 +94,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
+            position: relative;
         }
         
         .logo {
@@ -647,6 +648,11 @@
             width: 100%;
         }
         
+        /* Hamburger hidden by default */
+        .hamburger {
+            display: none;
+        }
+        
         @media (max-width: 1024px) {
             .security-content {
                 flex-direction: column;
@@ -698,11 +704,32 @@
                 padding: 1rem;
                 gap: 1rem;
             }
-            
             nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem 1.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                display: none;
+                background: var(--secondary-color);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1000;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li {
+                margin: 0.5rem 0 0.5rem 1rem;
+            }
+            .hamburger {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 2rem;
+                cursor: pointer;
+                margin-left: auto;
             }
             
             .security-header h1 {
@@ -791,8 +818,9 @@
             <div class="logo">
                 <h1>The Vulnerable MCP Project</h1>
             </div>
+            <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">&#9776;</button>
             <nav>
-                <ul>
+                <ul id="main-nav">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="https://roqwvequ.genspark.space/" target="_blank">Enterprise Security</a></li>
@@ -1982,6 +2010,25 @@ function verifyAndRegisterMCPTool(toolDefinition, providerInfo) {
                 }
             }
         }
+    </script>
+    <script>
+        // Hamburger menu for mobile nav
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navUl = document.getElementById('main-nav');
+            hamburger.addEventListener('click', function() {
+                const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', !expanded);
+                navUl.classList.toggle('show');
+            });
+            // Optional: close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !navUl.contains(e.target)) {
+                    navUl.classList.remove('show');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
     </script>
 </body>
 </html>
