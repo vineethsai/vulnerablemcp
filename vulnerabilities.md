@@ -206,3 +206,18 @@ The exploit involves a two-stage persistence mechanism that first creates a mark
 Malicious MCP servers can extract sensitive information by abusing tool function parameters. Information such as chain-of-thought, conversation history, previous tool call results, and full system prompt can be extracted by inserting parameters such as 'system_prompt' or 'conversation_history'. This attack technique can be used to exfiltrate sensitive information from user input or model response, understand what other tools the user has at their disposal that can be taken advantage of, as well as find ways to abuse the model itself.
 
 ---
+
+## GitHub MCP Exploited: Accessing private repositories via MCP
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** Invariant Labs  
+**Date:** May 26, 2025   
+**Tags:** Tool Manipulation, Toxic Agent Flows, Security Bypass, Prompt Injection, Data Exfiltration  
+**URL:** https://invariantlabs.ai/blog/mcp-github-vulnerability
+
+A critical vulnerability in the GitHub MCP integration allows attackers to exfiltrate private repository data by placing a malicious issue in a public repo. When an agent (e.g., Claude Desktop) reviews issues, it can be manipulated via prompt injection to leak sensitive data from private repos, even if the tools themselves are trusted. This attack, known as a "toxic agent flow," demonstrates that indirect prompt injection can compromise agentic systems at the architectural level.
+
+**Mitigation:** Limit agent access to only necessary repositories (least privilege), enforce session boundaries (e.g., one repo per session), and deploy continuous security monitoring and runtime guardrails to detect and block toxic flows.
+
+---
