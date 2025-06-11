@@ -76,7 +76,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
-            position: relative;
         }
         
         .logo {
@@ -518,142 +517,166 @@
             font-size: 1.2rem;
         }
 
-        /* Hamburger hidden by default */
-        .hamburger {
-            display: none;
-        }
-
         /* Responsive design */
-        @media (max-width: 1024px) {
-            .container {
-                padding: 0 0.5rem;
-            }
-            .footer-container {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-        }
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
-                gap: 0.5rem;
-                padding: 0.5rem 0.5rem 0 0.5rem;
+                gap: 1rem;
             }
+            
             nav ul {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-                display: none;
-                background: var(--secondary-color);
-                position: absolute;
-                top: 100%;
-                left: 0;
-                z-index: 1000;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                margin-top: 1rem;
             }
-            nav ul.show {
-                display: flex;
-            }
-            nav ul li {
-                margin: 0.5rem 0 0.5rem 1rem;
-            }
-            .hamburger {
-                display: block;
-                background: none;
-                border: none;
-                color: white;
-                font-size: 2rem;
-                cursor: pointer;
-                margin-left: auto;
-            }
-            .search-bar {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            .search-bar input, .search-bar button {
-                border-radius: 4px;
-            }
-            .filters {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-            .view-toggle {
-                margin-top: 0.5rem;
-                width: 100%;
-                justify-content: flex-start;
-            }
+            
             .issues-grid {
                 grid-template-columns: 1fr;
             }
-            .list-meta {
-                flex-direction: column;
-                gap: 0.5rem;
-                align-items: flex-start;
-            }
+            
             .footer-container {
                 flex-direction: column;
                 gap: 1rem;
-                align-items: center;
             }
-            .footer-links {
+            
+            .section-header {
                 flex-direction: column;
-                gap: 0.5rem;
-                align-items: center;
+                align-items: flex-start;
             }
-            .social-links {
-                justify-content: center;
-            }
-        }
-        @media (max-width: 600px) {
-            .container, .main.container {
-                padding: 0 0.25rem;
-            }
-            .hero {
-                padding: 2rem 0.5rem;
-            }
-            .hero h1 {
-                font-size: 1.5rem;
-            }
-            .section-title {
-                font-size: 1.2rem;
-            }
-            .issue-title {
-                font-size: 1rem;
-            }
-            .card-header, .card-body, .list-item {
-                padding: 0.75rem;
-            }
-            .about-section {
-                padding: 1rem;
+            
+            .view-toggle {
+                margin-top: 1rem;
             }
         }
-        @media (max-width: 480px) {
-            .hero {
-                padding: 1rem 0.25rem;
+
+        /* Timeline Styles */
+        .timeline-section {
+            padding: 2rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        #toggle-timeline-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        #toggle-timeline-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .timeline-section .section-title {
+            text-align: center;
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            list-style: none;
+            padding: 1rem 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #e9ecef;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+        }
+
+        .timeline-item .timeline-content {
+            width: calc(50% - 40px);
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            position: relative;
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .timeline-item .timeline-content:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+        }
+
+        .timeline-item .timeline-dot {
+            height: 20px;
+            width: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 20px;
+            border: 3px solid #f8f9fa;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline:before {
+                left: 10px;
             }
-            .hero h1 {
-                font-size: 1.1rem;
+            .timeline-item, .timeline-item:nth-child(odd), .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-left: 30px;
             }
-            .section-title {
-                font-size: 1rem;
+            .timeline-item .timeline-content {
+                width: 100%;
             }
-            .issue-title {
-                font-size: 0.95rem;
-            }
-            .card-header, .card-body, .list-item {
-                padding: 0.5rem;
-            }
-            .about-section {
-                padding: 0.5rem;
-            }
-            .btn {
-                font-size: 0.9rem;
-                padding: 0.4rem 0.7rem;
+            .timeline-item .timeline-dot {
+                left: 10px;
             }
         }
     </style>
@@ -664,15 +687,14 @@
             <div class="logo">
                 <h1>The Vulnerable MCP Project</h1>
             </div>
-            <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">&#9776;</button>
             <nav>
-                <ul id="main-nav">
-                    <li><a href="index.html">Home</a></li>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="security.html">Security</a></li>
-                    <li><a href="etdi-security.html">Enhance MCP Security using ETDI</a></li>
                     <li><a href="https://roqwvequ.genspark.space/" target="_blank">Enterprise Security</a></li>
                     <li><a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">Contribute</a></li>
+                    <li><a href="security.html">Understanding MCP Security</a></li>
+                    <li><a href="etdi-security.html">Enhance MCP Security using ETDI</a></li>
                     <li><a href="https://vineethsai.com" target="_blank">Author</a></li>
                 </ul>
             </nav>
@@ -683,6 +705,18 @@
         <div class="container">
             <h1>The Vulnerable MCP Project</h1>
             <p>A community-maintained database of known vulnerabilities, limitations, and security concerns with the Model Context Protocol (MCP)</p>
+        </div>
+    </section>
+    
+    <section class="timeline-section">
+        <div class="container">
+            <div class="timeline-header">
+                <h2 class="section-title">Vulnerability Timeline</h2>
+                <button id="toggle-timeline-btn">Show Timeline</button>
+            </div>
+            <ul class="timeline" style="display: none;">
+                <!-- Timeline items will be generated by JS -->
+            </ul>
         </div>
     </section>
     
@@ -1326,111 +1360,170 @@ The exploit involves a two-stage persistence mechanism that first creates a mark
     </footer>
 
     <script>
-        // Search, filter and view toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('search-input');
-            const issueCards = document.querySelectorAll('.issue-card');
-            const listItems = document.querySelectorAll('.list-item');
             const filterButtons = document.querySelectorAll('.filter-btn');
             const gridViewBtn = document.getElementById('grid-view-btn');
             const listViewBtn = document.getElementById('list-view-btn');
             const issuesGrid = document.querySelector('.issues-grid');
             const issuesList = document.querySelector('.issues-list');
+            const timelineContainer = document.querySelector('.timeline');
+            const toggleTimelineBtn = document.getElementById('toggle-timeline-btn');
+
+            // --- Sorting and Timeline Generation ---
+            function parseDate(dateString) {
+                if (!dateString) return new Date(0);
+                const cleanedDateString = dateString.replace(/<i[^>]*>.*?<\/i>/g, '').trim();
+                const parts = cleanedDateString.split(' ');
+                if (parts.length === 2 && isNaN(parseInt(parts[0], 10))) {
+                    return new Date(`${parts[0]} 1, ${parts[1]}`);
+                }
+                const date = new Date(cleanedDateString);
+                return isNaN(date.getTime()) ? new Date(0) : date;
+            }
+
+            const initialCards = Array.from(issuesGrid.querySelectorAll('.issue-card'));
+            const initialListItems = Array.from(issuesList.querySelectorAll('.list-item'));
+
+            const vulnerabilities = initialCards.map((card, index) => {
+                const title = card.querySelector('.issue-title').textContent.trim();
+                const dateString = card.querySelector('.meta-info span:first-child').innerHTML;
+                const date = parseDate(dateString);
+                const url = card.querySelector('.btn')?.href || '#';
+                return {
+                    title,
+                    date,
+                    url,
+                    cardElement: card,
+                    listItemElement: initialListItems[index]
+                };
+            });
+
+            vulnerabilities.sort((a, b) => b.date - a.date);
+
+            issuesGrid.innerHTML = '';
+            issuesList.innerHTML = '';
+            vulnerabilities.forEach(vuln => {
+                issuesGrid.appendChild(vuln.cardElement);
+                issuesList.appendChild(vuln.listItemElement);
+            });
             
+            if (timelineContainer) {
+                timelineContainer.innerHTML = '';
+                vulnerabilities.forEach(vuln => {
+                    const timelineItem = document.createElement('li');
+                    timelineItem.className = 'timeline-item';
+                    const formattedDate = vuln.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    timelineItem.innerHTML = `
+                        <div class="timeline-dot"></div>
+                        <a href="${vuln.url}" target="_blank" class="timeline-content">
+                            <span class="timeline-date">${formattedDate}</span>
+                            <h3 class="timeline-title">${vuln.title}</h3>
+                        </a>
+                    `;
+                    timelineContainer.appendChild(timelineItem);
+                });
+            }
+            
+            if (toggleTimelineBtn && timelineContainer) {
+                toggleTimelineBtn.addEventListener('click', () => {
+                    const isHidden = timelineContainer.style.display === 'none';
+                    if(isHidden) {
+                        timelineContainer.style.display = 'block';
+                        toggleTimelineBtn.textContent = 'Hide Timeline';
+                    } else {
+                        timelineContainer.style.display = 'none';
+                        toggleTimelineBtn.textContent = 'Show Timeline';
+                    }
+                });
+            }
+            
+            const issueCards = document.querySelectorAll('.issue-card');
+            const listItems = document.querySelectorAll('.list-item');
+
             // View toggle functionality
             gridViewBtn.addEventListener('click', function() {
                 gridViewBtn.classList.add('active');
                 listViewBtn.classList.remove('active');
                 issuesGrid.classList.remove('hidden');
+                issuesGrid.style.display = 'grid';
                 issuesList.classList.remove('active');
+                issuesList.style.display = 'none';
             });
             
             listViewBtn.addEventListener('click', function() {
                 listViewBtn.classList.add('active');
                 gridViewBtn.classList.remove('active');
                 issuesGrid.classList.add('hidden');
+                issuesGrid.style.display = 'none';
                 issuesList.classList.add('active');
+                issuesList.style.display = 'flex';
             });
             
             // Search functionality
-            searchInput.addEventListener('keyup', function() {
-                const searchTerm = this.value.toLowerCase();
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
                 
-                // Search in grid view
                 issueCards.forEach(card => {
                     const title = card.querySelector('.issue-title').textContent.toLowerCase();
                     const description = card.querySelector('.issue-description').textContent.toLowerCase();
                     const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
                     
-                    if (title.includes(searchTerm) || description.includes(searchTerm) || tags.some(tag => tag.includes(searchTerm))) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
+                    if (card.style.display !== 'none') {
+                        if (title.includes(searchTerm) || description.includes(searchTerm) || tags.some(tag => tag.includes(searchTerm))) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
                     }
                 });
                 
-                // Search in list view
                 listItems.forEach(item => {
                     const title = item.querySelector('.list-title').textContent.toLowerCase();
-                    const category = item.querySelector('.list-category').textContent.toLowerCase();
+                    const category = item.dataset.category.toLowerCase();
+                    const date = item.querySelector('.list-date').textContent.toLowerCase();
                     
-                    if (title.includes(searchTerm) || category.includes(searchTerm)) {
-                        item.style.display = 'flex';
-                    } else {
-                        item.style.display = 'none';
+                    if (item.style.display !== 'none') {
+                        if (title.includes(searchTerm) || category.includes(searchTerm) || date.includes(searchTerm)) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
                     }
                 });
-            });
+            }
+            searchInput.addEventListener('keyup', performSearch);
             
             // Filter functionality
             filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    // Remove active class from all buttons
                     filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Add active class to clicked button
                     this.classList.add('active');
                     
                     const filter = this.getAttribute('data-filter');
                     const severityFilter = this.getAttribute('data-severity');
                     
-                    // Filter grid view
                     issueCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter || 
-                            (severityFilter && card.getAttribute('data-severity') === severityFilter)) {
+                        if ( (filter === 'all' || !filter && !severityFilter) || 
+                             (filter && card.getAttribute('data-category') === filter) || 
+                             (severityFilter && card.getAttribute('data-severity') === severityFilter) ) {
                             card.style.display = 'block';
                         } else {
                             card.style.display = 'none';
                         }
                     });
                     
-                    // Filter list view
                     listItems.forEach(item => {
-                        if (filter === 'all' || item.getAttribute('data-category') === filter || 
-                            (severityFilter && item.getAttribute('data-severity') === severityFilter)) {
+                        if ( (filter === 'all' || !filter && !severityFilter) ||
+                             (filter && item.getAttribute('data-category') === filter) ||
+                             (severityFilter && item.getAttribute('data-severity') === severityFilter) ) {
                             item.style.display = 'flex';
                         } else {
                             item.style.display = 'none';
                         }
                     });
+                    performSearch();
                 });
-            });
-        });
-
-        // Hamburger menu for mobile nav
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger');
-            const navUl = document.getElementById('main-nav');
-            hamburger.addEventListener('click', function() {
-                const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-                hamburger.setAttribute('aria-expanded', !expanded);
-                navUl.classList.toggle('show');
-            });
-            // Optional: close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!hamburger.contains(e.target) && !navUl.contains(e.target)) {
-                    navUl.classList.remove('show');
-                    hamburger.setAttribute('aria-expanded', 'false');
-                }
             });
         });
     </script>
