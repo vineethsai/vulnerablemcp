@@ -221,3 +221,16 @@ A critical vulnerability in the GitHub MCP integration allows attackers to exfil
 **Mitigation:** Limit agent access to only necessary repositories (least privilege), enforce session boundaries (e.g., one repo per session), and deploy continuous security monitoring and runtime guardrails to detect and block toxic flows.
 
 ---
+
+## Heroku remote MCP Exploited: Maliciously Transfer App Ownership to Attacker
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** CodeIntegrity.ai
+**Date:** June 17, 2025   
+**Tags:** Tool Manipulation, Hidden Instructions, Security Bypass
+**URL:** https://codeintegrity.notion.site/heroku-mcp-exploit
+
+A critical security vulnerability has been discovered by CodeIntegrity.ai researchers where attackers can inject a message into a Heroku-hosted web service they don't own to maliciously transfer ownership of the service to themselves.
+
+---
