@@ -19,6 +19,16 @@
     <link rel="canonical" href="https://vineethsai.github.io/vulnerablemcp/">
     <title>The Vulnerable MCP Project: Tracking Model Context Protocol Vulnerabilities</title>
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQZ3K6M59C"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WQZ3K6M59C');
+    </script>
+    
     <!-- Structured Data for better SEO -->
     <script type="application/ld+json">
     {
@@ -35,6 +45,7 @@
     }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         :root {
             --primary-color: #3498db;
@@ -253,7 +264,7 @@
             display: none;
         }
         
-        .issue-card {
+        .vulnerability-card {
             background-color: white;
             border-radius: 8px;
             overflow: hidden;
@@ -261,7 +272,7 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .issue-card:hover {
+        .vulnerability-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
@@ -279,7 +290,7 @@
             font-weight: bold;
         }
         
-        .severity {
+        .severity-badge {
             display: inline-block;
             padding: 0.2rem 0.8rem;
             border-radius: 20px;
@@ -288,11 +299,11 @@
             color: white;
         }
         
-        .high {
+        .severity-high {
             background-color: var(--high-severity);
         }
         
-        .medium {
+        .severity-medium {
             background-color: var(--medium-severity);
         }
         
@@ -688,11 +699,14 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <h1>The Vulnerable MCP Project</h1>
+                <h1><a href="index.html">The Vulnerable MCP Project</a></h1>
             </div>
             <nav>
-                <ul>
-                    <li><a href="#" class="active">Home</a></li>
+                <button class="nav-toggle" aria-label="toggle navigation" aria-expanded="false">
+                    <span class="hamburger">&#9776;</span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="https://roqwvequ.genspark.space/" target="_blank">Enterprise Security</a></li>
                     <li><a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">Contribute</a></li>
@@ -725,18 +739,20 @@
     
     <main class="container">
         <div class="search-bar">
-            <input type="text" placeholder="Search issues, vulnerabilities, or keywords..." id="search-input">
-            <button type="submit"><i class="fas fa-search"></i></button>
+            <input type="text" placeholder="Search vulnerabilities..." id="searchInput">
+            <button type="button" id="searchButton"><i class="fas fa-search"></i> Search</button>
         </div>
         
         <div class="filters">
-            <button class="filter-btn active" data-filter="all">All Issues</button>
-            <button class="filter-btn" data-filter="security">Security Vulnerabilities</button>
-            <button class="filter-btn" data-filter="implementation">Implementation Challenges</button>
-            <button class="filter-btn" data-filter="limitations">Protocol Limitations</button>
-            <button class="filter-btn" data-severity="high">High Severity</button>
-            <button class="filter-btn" data-severity="medium">Medium Severity</button>
-            <button class="filter-btn" data-severity="low">Low Severity</button>
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="high">High Risk</button>
+            <button class="filter-btn" data-filter="medium">Medium Risk</button>
+            <button class="filter-btn" data-filter="low">Low Risk</button>
+            <button class="filter-btn" data-filter="info">Info</button>
+        </div>
+        
+        <div class="results-info">
+            <p id="resultsCount">Loading vulnerabilities...</p>
         </div>
         
         <div class="section-header">
@@ -750,10 +766,10 @@
         <div class="issues-grid">
             
             <!-- Issue: Tool Poisoning Attacks -->
-            <div class="issue-card" data-category="security" data-severity="high">
+            <div class="vulnerability-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">Tool Poisoning Attacks</div>
-                    <span class="severity high">High</span>
+                    <span class="severity-badge severity-high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
@@ -774,10 +790,10 @@ For example, a seemingly innocent calculator tool could include hidden instructi
             </div>
 
             <!-- Issue: Rug Pulls: Silent Redefinition -->
-            <div class="issue-card" data-category="security" data-severity="high">
+            <div class="vulnerability-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">Rug Pulls: Silent Redefinition</div>
-                    <span class="severity high">High</span>
+                    <span class="severity-badge severity-high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
@@ -798,10 +814,10 @@ Most MCP clients do not notify users about changes to tool descriptions after in
             </div>
 
             <!-- Issue: Cross-Server Tool Shadowing -->
-            <div class="issue-card" data-category="security" data-severity="high">
+            <div class="vulnerability-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">Cross-Server Tool Shadowing</div>
-                    <span class="severity high">High</span>
+                    <span class="severity-badge severity-high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
@@ -822,10 +838,10 @@ This vulnerability allows attackers to effectively control legitimate tools by i
             </div>
 
             <!-- Issue: WhatsApp Message Exfiltration -->
-            <div class="issue-card" data-category="security" data-severity="high">
+            <div class="vulnerability-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">WhatsApp Message Exfiltration</div>
-                    <span class="severity high">High</span>
+                    <span class="severity-badge severity-high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
@@ -846,10 +862,10 @@ The attack uses techniques like adding large amounts of whitespace before the ex
             </div>
 
             <!-- Issue: Session IDs Exposed in URLs -->
-            <div class="issue-card" data-category="security" data-severity="medium">
+            <div class="vulnerability-card" data-category="security" data-severity="medium">
                 <div class="card-header">
                     <div class="issue-title">Session IDs Exposed in URLs</div>
-                    <span class="severity medium">Medium</span>
+                    <span class="severity-badge severity-medium">Medium</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
@@ -1530,5 +1546,6 @@ The exploit involves a two-stage persistence mechanism that first creates a mark
             });
         });
     </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

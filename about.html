@@ -23,6 +23,16 @@
     <link rel="canonical" href="https://vulnerablemcp.info/about.html">
     <title>About The Vulnerable MCP Project | Our Mission & Community</title>
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQZ3K6M59C"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WQZ3K6M59C');
+    </script>
+    
     <!-- Structured Data for better SEO -->
     <script type="application/ld+json">
     {
@@ -39,6 +49,7 @@
     }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         :root {
             --primary-color: #4285f4;
@@ -378,12 +389,17 @@
                 <h1><a href="index.html">The Vulnerable MCP Project</a></h1>
             </div>
             <nav>
-                <ul>
+                <button class="nav-toggle" aria-label="toggle navigation" aria-expanded="false">
+                    <span class="hamburger">&#9776;</span>
+                </button>
+                <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="security.html">Security</a></li>
-                    <li><a href="etdi-security.html">ETDI Security</a></li>
+                    <li><a href="https://roqwvequ.genspark.space/" target="_blank">Enterprise Security</a></li>
                     <li><a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">Contribute</a></li>
+                    <li><a href="security.html">Understanding MCP Security</a></li>
+                    <li><a href="etdi-security.html">ETDI Security</a></li>
+                    <li><a href="https://vineethsai.com" target="_blank">Author</a></li>
                 </ul>
             </nav>
         </div>
@@ -450,5 +466,6 @@
             </div>
         </div>
     </footer>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

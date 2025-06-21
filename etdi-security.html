@@ -22,6 +22,16 @@
     <link rel="canonical" href="https://vulnerablemcp.info/enhanced-etdi-security.html">
     <title>ETDI: Enhanced Tool Definition Interface | MCP Security Framework</title>
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQZ3K6M59C"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WQZ3K6M59C');
+    </script>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -46,540 +56,29 @@
     </script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        :root {
-            --primary-color: #4285f4;
-            --secondary-color: #293846;
-            --accent-color: #ea4335;
-            --success-color: #34a853;
-            --warning-color: #fbbc05;
-            --light-color: #f8f9fa;
-            --dark-color: #202124;
-            --high-severity: #ea4335;
-            --medium-severity: #fbbc05;
-            --low-severity: #4285f4;
-            --info-severity: #5f6368;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
-            --code-bg: #1e1e1e;
-            --code-text: #d4d4d4;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            line-height: 1.7;
-            font-size: 16px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #1a252f 100%);
-            color: white;
-            padding: 1.2rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo h1 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: white;
-            display: flex;
-            align-items: center;
-            letter-spacing: 0.5px;
-        }
-        
-        .logo h1::before {
-            content: '🔒';
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-            padding-bottom: 3px;
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: var(--transition);
-        }
-        
-        nav ul li a:hover::after, nav ul li a.active::after {
-            width: 100%;
-        }
-        
-        nav ul li a:hover, nav ul li a.active {
-            color: var(--primary-color);
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 3rem 1rem;
-        }
-        
-        .security-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .security-header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        .security-header .subtitle {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        
-        .security-header p {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .research-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color), #1976d2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        
-        .security-content {
-            display: flex;
-            gap: 0;
-            margin-top: 2.5rem;
-            max-width: 100%;
-            overflow: visible;
-            position: relative;
-        }
-        
-        .security-nav {
-            position: sticky;
-            top: 5rem;
-            align-self: start;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            height: calc(100vh - 5rem);
-            border-right: 1px solid rgba(0, 0, 0, 0.1);
-            width: 350px;
-            flex-shrink: 0;
-            padding: 2rem 1rem 2rem 2rem;
-            overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .security-nav h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--secondary-color);
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-align: center;
-        }
-        
-        .security-nav ul {
-            list-style: none;
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
-            display: block;
-        }
-        
-        .security-nav ul li {
-            margin-bottom: 1rem;
-        }
-        
-        .security-nav ul li a {
-            color: var(--dark-color);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: var(--transition);
-            display: block;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            position: relative;
-            font-weight: 500;
-        }
-        
-        .security-nav ul ul {
-            margin-left: 1.5rem;
-            margin-top: 0.5rem;
-            display: block;
-        }
-        
-        .security-nav ul ul li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .security-nav ul li a:hover {
-            background: linear-gradient(135deg, rgba(66, 133, 244, 0.1), rgba(66, 133, 244, 0.05));
-            color: var(--primary-color);
-            transform: translateX(5px);
-        }
-        
-        .security-nav ul li a.active {
-            background: linear-gradient(135deg, rgba(66, 133, 244, 0.15), rgba(66, 133, 244, 0.1));
-            color: var(--primary-color);
-            font-weight: 600;
-            border-left: 4px solid var(--primary-color);
-        }
-        
         .security-main {
             flex: 1;
             padding: 0 2rem;
             max-width: calc(100% - 350px);
         }
-        
+
+        .image-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
         .section {
             margin-bottom: 3rem;
             background: white;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: var(--box-shadow);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .section h2 {
-            font-size: 2.2rem;
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 3px solid var(--primary-color);
-            position: relative;
-        }
-        
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--accent-color);
-        }
-        
-        .section h3 {
-            font-size: 1.6rem;
-            color: var(--secondary-color);
-            margin: 2rem 0 1rem 0;
-            font-weight: 600;
-        }
-        
-        .section h4 {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin: 1.5rem 0 1rem 0;
-            font-weight: 600;
-        }
-        
-        .section p {
-            margin-bottom: 1.5rem;
-            color: #444;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        
-        .section ul, .section ol {
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-        }
-        
-        .section ul li, .section ol li {
-            margin-bottom: 0.75rem;
-            color: #444;
-            line-height: 1.6;
-        }
-        
-        .section ul li strong, .section ol li strong {
-            color: var(--primary-color);
-        }
-        
-        .code-block {
-            background: var(--code-bg);
-            color: var(--code-text);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-            overflow-x: auto;
-            border: 1px solid #444;
-            position: relative;
-        }
-        
-        .code-block::before {
-            content: attr(data-language);
-            position: absolute;
-            top: 0.5rem;
-            right: 1rem;
-            background: var(--primary-color);
-            color: white;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .code-block pre {
-            margin: 0;
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-        
-        .note {
-            background: linear-gradient(135deg, rgba(66, 133, 244, 0.1), rgba(66, 133, 244, 0.05));
-            border-left: 4px solid var(--primary-color);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 12px 12px 0;
-            position: relative;
-        }
-        
-        .note::before {
-            content: '💡';
-            position: absolute;
-            top: 1rem;
-            left: -12px;
-            background: var(--primary-color);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-        
-        .warning {
-            background: linear-gradient(135deg, rgba(251, 188, 5, 0.1), rgba(251, 188, 5, 0.05));
-            border-left: 4px solid var(--warning-color);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 12px 12px 0;
-            position: relative;
-        }
-        
-        .warning::before {
-            content: '⚠️';
-            position: absolute;
-            top: 1rem;
-            left: -12px;
-            background: var(--warning-color);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-        
-        .danger {
-            background: linear-gradient(135deg, rgba(234, 67, 53, 0.1), rgba(234, 67, 53, 0.05));
-            border-left: 4px solid var(--high-severity);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 12px 12px 0;
-            position: relative;
-        }
-        
-        .danger::before {
-            content: '🚨';
-            position: absolute;
-            top: 1rem;
-            left: -12px;
-            background: var(--high-severity);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-        
-        .architecture-diagram {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border: 2px dashed var(--primary-color);
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .feature-card {
-            background: linear-gradient(135deg, rgba(66, 133, 244, 0.05), rgba(66, 133, 244, 0.02));
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(66, 133, 244, 0.2);
-            transition: var(--transition);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(66, 133, 244, 0.15);
-        }
-        
-        .feature-card h4 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .research-authors {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-            border-left: 4px solid var(--success-color);
-        }
-        
-        .research-authors h4 {
-            color: var(--success-color);
-            margin-bottom: 1rem;
-        }
-        
-        .authors-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .author {
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .author h5 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .author p {
-            font-size: 0.9rem;
-            color: #666;
-            margin: 0;
-        }
-        
-        @media (max-width: 1024px) {
-            .security-content {
-                flex-direction: column;
-            }
-            
-            .security-nav {
-                position: relative;
-                top: 0;
-                width: 100%;
-                height: auto;
-                border-right: none;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-                margin-bottom: 2rem;
-            }
-            
-            .security-main {
-                max-width: 100%;
-                padding: 0 1rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-            
-            .security-header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .section {
-                padding: 1.5rem;
-            }
-            
-            .section h2 {
-                font-size: 1.8rem;
-            }
-            
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -587,17 +86,19 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <h1>The Vulnerable MCP Project</h1>
+                <h1><a href="index.html">The Vulnerable MCP Project</a></h1>
             </div>
-            <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">&#9776;</button>
             <nav>
-                <ul id="main-nav">
+                <button class="nav-toggle" aria-label="toggle navigation" aria-expanded="false">
+                    <span class="hamburger">&#9776;</span>
+                </button>
+                <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="security.html">Security</a></li>
-                    <li><a href="etdi-security.html">Enhance MCP Security using ETDI</a></li>
                     <li><a href="https://roqwvequ.genspark.space/" target="_blank">Enterprise Security</a></li>
                     <li><a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">Contribute</a></li>
+                    <li><a href="security.html">Understanding MCP Security</a></li>
+                    <li><a href="etdi-security.html" class="active">ETDI Security</a></li>
                     <li><a href="https://vineethsai.com" target="_blank">Author</a></li>
                 </ul>
             </nav>
@@ -611,8 +112,6 @@
             <p class="subtitle">Comprehensive MCP Security Framework</p>
             <p>A robust security framework for protecting Large Language Model applications from tool poisoning and rug pull attacks through cryptographic verification, OAuth integration, and policy-based access control.</p>
         </div>
-
-
 
         <div class="security-content">
             <nav class="security-nav">
@@ -676,6 +175,9 @@
                         <p>🏗️ Standard MCP Architecture Flow</p>
                         <p>User ↔ Host Application ↔ MCP Client ↔ LLM ↔ MCP Server ↔ Tools</p>
                     </div>
+                    <div class="image-container">
+                        <img src="high-level-arch.png" alt="High-level MCP architecture diagram">
+                    </div>
 
                     <h3>Operational Phases</h3>
                     <h4>1. Initialization and Discovery Phase</h4>
@@ -685,6 +187,10 @@
                         <li><strong>Tool Listing Request:</strong> Client sends listTools request to enumerate available tools</li>
                         <li><strong>Tool Definition Exchange:</strong> Servers respond with tool definitions including descriptions, schemas, and parameters</li>
                     </ol>
+
+                    <div class="image-container">
+                        <img src="Initialization-and-Discovery-Phase.png" alt="Initialization and Discovery Phase Diagram">
+                    </div>
 
                     <h4>2. Tool Invocation and Usage Phase</h4>
                     <ol>
@@ -696,6 +202,10 @@
                         <li><strong>Result Propagation:</strong> Tool returns output to server, which relays to client</li>
                         <li><strong>Context Augmentation:</strong> Results are incorporated into LLM context for final response generation</li>
                     </ol>
+
+                    <div class="image-container">
+                        <img src="Tool-Invocation-and-Usage-Phase.png" alt="Tool Invocation and Usage Phase Diagram">
+                    </div>
 
                     <div class="warning">
                         <strong>Critical Gap:</strong> Standard MCP lacks verifiable authenticity or integrity markers in tool definitions, creating significant security vulnerabilities.
@@ -761,6 +271,9 @@ Illustrative Scenario: Malicious "SecureDocs Scanner"
                         <p>⚠️ Tool Poisoning Attack Flow</p>
                         <p>Legitimate Tool ← Impersonated by → Malicious Tool → Data Exfiltration</p>
                     </div>
+                    <div class="image-container">
+                        <img src="tool-poisoning.png" alt="Tool Poisoning Attack Diagram">
+                    </div>
                 </section>
 
                 <section id="rug-pull" class="section">
@@ -809,6 +322,9 @@ Result: Malicious action performed silently without user awareness
                     <div class="architecture-diagram">
                         <p>🪝 Rug Pull Attack Flow</p>
                         <p>Benign Tool (Initial Approval) → Silent Modification → Malicious Behavior (No Re-approval)</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="rug-pull.png" alt="Rug Pull Attack Diagram">
                     </div>
                 </section>
 
@@ -890,6 +406,9 @@ function verifyAndApproveTool(toolDefinition, providerPublicKey) {
     return true;
 }
 </pre>
+                    </div>
+                    <div class="image-container">
+                        <img src="preventing-tool-poisoning.png" alt="Preventing Tool Poisoning with ETDI">
                     </div>
                 </section>
 
@@ -1016,18 +535,8 @@ function validateToolIntegrity(toolDefinition, storedApproval) {
 }
 </pre>
                     </div>
-
-                    <h3>Change Detection Mechanisms</h3>
-                    <p>ETDI implements multiple layers of change detection:</p>
-                    <ul>
-                        <li><strong>Definition Hash Comparison:</strong> Cryptographic hash comparison of entire tool definition</li>
-                        <li><strong>Schema Validation:</strong> Structural validation of input/output schemas</li>
-                        <li><strong>Permission Drift Detection:</strong> Monitoring for unauthorized permission escalation</li>
-                        <li><strong>Behavioral Monitoring:</strong> Optional runtime behavior validation against declared capabilities</li>
-                    </ul>
-
-                    <div class="warning">
-                        <strong>Critical Requirement:</strong> Once a tool definition is approved and signed, it cannot be modified without creating a new version and going through the complete approval process again.
+                    <div class="image-container">
+                        <img src="preventing-rug-pull.png" alt="Preventing Rug Pulls with ETDI">
                     </div>
                 </section>
 
@@ -1068,6 +577,9 @@ function validateToolIntegrity(toolDefinition, storedApproval) {
                         <p>🔄 OAuth-Enhanced ETDI Architecture</p>
                         <p>User → Host App → MCP Client ↔ OAuth IdP ↔ MCP Server → Tool</p>
                     </div>
+                    <div class="image-container">
+                        <img src="oauth2-integ.png" alt="OAuth 2.0 Integration with ETDI">
+                    </div>
 
                     <h3>Dual Authorization Model</h3>
                     <p>ETDI-OAuth implements a sophisticated dual authorization model:</p>
@@ -1086,44 +598,58 @@ function validateToolIntegrity(toolDefinition, storedApproval) {
                         <li>Dynamic permission validation based on user context</li>
                     </ul>
 
-                    <div class="code-block" data-language="JSON">
-<pre>
-// Example OAuth-Enhanced Tool Definition
-{
-    "tool_id": "premium-analytics-tool",
-    "version": "2.1.0",
-    "oauth_config": {
-        "issuer": "https://trusted-idp.example.com",
-        "client_id": "analytics-tool-client",
-        "scopes": ["data:read", "analytics:compute", "export:csv"],
-        "required_user_scopes": ["premium:access", "analytics:use"]
-    },
-    "jwt_claims": {
-        "iss": "https://trusted-idp.example.com",
-        "sub": "premium-analytics-tool",
-        "aud": "mcp-ecosystem",
-        "tool_id": "premium-analytics-tool",
-        "tool_version": "2.1.0",
-        "scopes": ["data:read", "analytics:compute", "export:csv"],
-        "exp": 1710432000,
-        "iat": 1710345600
-    },
-    "signature": "JWT_signature_using_IdP_private_key"
-}
-</pre>
+                    <div class="architecture-diagram">
+                        <p>🏗️ Standard MCP Architecture Flow</p>
+                        <p>User ↔ Host Application ↔ MCP Client ↔ LLM ↔ MCP Server ↔ Tools</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="OAuth-Enhanced-Tool-Poisoning-Defense.png" alt="OAuth Enhanced Tool Poisoning Defense">
                     </div>
 
-                    <h3>Token Lifecycle Management</h3>
-                    <p>OAuth-Enhanced ETDI implements comprehensive token lifecycle management:</p>
-                    <ol>
-                        <li><strong>Token Issuance:</strong> IdP issues JWT tokens with tool-specific claims</li>
-                        <li><strong>Token Validation:</strong> MCP clients validate tokens using IdP public keys</li>
-                        <li><strong>Token Refresh:</strong> Automated token refresh for long-running sessions</li>
-                        <li><strong>Token Revocation:</strong> Immediate revocation capabilities for compromised tools</li>
-                    </ol>
+                    <h3>Defense Against Post-Approval Modification (Rug Pulls)</h3>
+                    <p>ETDI's immutability and versioning principles provide robust protection against rug pull attacks:</p>
+
+                    <div class="architecture-diagram">
+                        <p>🚫 ETDI Rug Pull Prevention</p>
+                        <p>Tool Modification → Version Change Detection → Re-approval Required → User Consent</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="OAuth-Enhanced-Rug-Pull-Defense.png" alt="OAuth Enhanced Rug Pull Defense">
+                    </div>
+
+                    <h3>Enhanced Trust and Auditability</h3>
+                    <p>The integrated ETDI framework provides comprehensive trust and auditability features:</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h4>🏛️ Centralized Trust Management</h4>
+                            <p>OAuth IdPs serve as centralized authorities for tool provider identity and authorization policy management.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>📊 Standardized Permissions</h4>
+                            <p>OAuth scopes provide standardized, well-understood permission definitions across the ecosystem.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🔄 Revocation Capabilities</h4>
+                            <p>IdPs support immediate token and credential revocation for swift response to security compromises.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>📝 Comprehensive Audit Trail</h4>
+                            <p>Complete logging of all authorization decisions, policy evaluations, and tool interactions for compliance and forensics.</p>
+                        </div>
+                    </div>
+
+                    <h3>Policy-Based Context-Aware Security</h3>
+                    <p>The policy engine layer adds dynamic authorization capabilities that address complex real-world scenarios:</p>
+                    <ul>
+                        <li><strong>Context-Sensitive Decisions:</strong> Authorization considers time, location, user attributes, data sensitivity, and session history</li>
+                        <li><strong>Risk-Based Access Control:</strong> Dynamic risk assessment influences authorization decisions</li>
+                        <li><strong>Adaptive Security Posture:</strong> Security controls adapt to changing threat landscape and user behavior patterns</li>
+                        <li><strong>Principle of Least Privilege:</strong> Fine-grained policies ensure tools receive minimum necessary permissions</li>
+                    </ul>
 
                     <div class="note">
-                        <strong>Security Enhancement:</strong> OAuth integration provides standardized token revocation, scope management, and centralized trust authority while maintaining ETDI's cryptographic verification requirements.
+                        <strong>Security Effectiveness:</strong> By requiring cryptographic proof of identity and integrity for each tool version, making changes explicit and subject to re-approval, and adding contextual policy checks, ETDI significantly raises the operational bar for attackers while providing defense in depth.
                     </div>
                 </section>
 
@@ -2037,8 +1563,6 @@ forbid(
                         <strong>Security Critical:</strong> Never store private keys in code or version control. Always use secure key management systems, implement proper access controls, and follow the principle of least privilege throughout your ETDI implementation.
                     </div>
                 </section>
-
-
             </main>
         </div>
     </div>
@@ -2086,5 +1610,6 @@ forbid(
             });
         });
     </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
