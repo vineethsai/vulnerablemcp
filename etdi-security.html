@@ -58,6 +58,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
+        .security-nav {
+            width: 280px !important;
+        }
+
         .security-main {
             flex: 1;
             padding: 0 2rem;
@@ -88,6 +92,34 @@
         .section {
             margin-bottom: 3rem;
             background: white;
+        }
+
+        /* Animations */
+        .section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .security-nav ul li {
+            transition: all 0.3s ease;
+        }
+
+        .security-nav ul li:hover {
+            transform: translateX(5px);
+        }
+
+        .security-nav ul li a {
+            transition: all 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Mobile responsive for images */
@@ -1583,6 +1615,23 @@ forbid(
             </main>
         </div>
     </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>&copy; 2025 The Vulnerable MCP Project. All rights reserved.</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="security.html">Security</a>
+                    <a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">Contribute</a>
+                    <a href="https://www.linkedin.com/in/vineethsai/" target="_blank">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Smooth scrolling for navigation links
