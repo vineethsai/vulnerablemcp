@@ -220,21 +220,21 @@ nav {
 
 @media (min-width: 1200px) {
     .security-main {
-        max-width: 900px;
+        max-width: 1100px;
         margin: 0 auto;
     }
 }
 
 @media (min-width: 1400px) {
     .security-main {
-        max-width: 1000px;
+        max-width: 1200px;
     }
 }
 
 @media (min-width: 769px) and (max-width: 1199px) {
     .security-nav {
-        width: 220px;
-        padding: var(--space-4);
+        width: 180px;
+        padding: var(--space-3);
     }
     
     .security-main {
@@ -249,9 +249,9 @@ nav {
     align-self: start;
     background-color: var(--gray-2);
     border-right: 1px solid var(--gray-6);
-    width: 240px;
+    width: 200px;
     flex-shrink: 0;
-    padding: var(--space-5);
+    padding: var(--space-4);
     overflow-y: auto;
     max-height: calc(100vh - 80px);
 }
@@ -861,6 +861,8 @@ nav {
 
 .image-container img {
     max-width: 100%;
+    min-width: 600px;
+    width: 85%;
     height: auto;
     border-radius: var(--border-radius);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
