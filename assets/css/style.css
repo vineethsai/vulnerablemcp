@@ -1660,6 +1660,7 @@ footer::before {
     
     .nav-toggle {
         display: block;
+        z-index: 1001;
     }
     
     .nav-links {
@@ -1674,6 +1675,7 @@ footer::before {
         box-shadow: var(--box-shadow-3);
         border-radius: 0 0 var(--border-radius-3) var(--border-radius-3);
         border-top: 1px solid var(--gray-6);
+        z-index: 1000;
     }
     
     .nav-links.show {

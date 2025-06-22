@@ -129,6 +129,21 @@
                 min-width: 100%;
                 width: 100%;
             }
+            
+            /* Override sidebar width for mobile */
+            .security-nav {
+                width: 100% !important;
+                order: -1;
+                margin-bottom: var(--space-4);
+            }
+            
+            .security-content {
+                flex-direction: column !important;
+            }
+            
+            .security-main {
+                padding: 0 var(--space-4) !important;
+            }
         }
     </style>
 
