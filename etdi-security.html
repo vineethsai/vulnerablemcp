@@ -196,6 +196,7 @@
                     <li><a href="#security-analysis">Comprehensive Security Analysis</a></li>
                     <li><a href="#implementation">Implementation Guide</a></li>
                     <li><a href="#best-practices">Best Practices and Recommendations</a></li>
+                    <li><a href="#research-references">Research and Implementation</a></li>
                 </ul>
             </nav>
 
@@ -1625,6 +1626,56 @@ forbid(
 
                     <div class="danger">
                         <strong>Security Critical:</strong> Never store private keys in code or version control. Always use secure key management systems, implement proper access controls, and follow the principle of least privilege throughout your ETDI implementation.
+                    </div>
+                </section>
+
+                <section id="research-references" class="section">
+                    <h2>Research and Implementation</h2>
+                    <p>ETDI is based on peer-reviewed research and active development within the Model Context Protocol ecosystem.</p>
+
+                    <h3>Academic Publication</h3>
+                    <div class="feature-card">
+                        <h4>📄 ETDI Research Paper</h4>
+                        <p><strong>Title:</strong> "ETDI: Mitigating Tool Squatting and Rug Pull Attacks in Model Context Protocol (MCP) by using OAuth-Enhanced Tool Definitions and Policy-Based Access Control"</p>
+                        <p><strong>Published:</strong> arXiv:2506.01333 [cs.CR] - June 2, 2025</p>
+                        <p><strong>Authors:</strong> Manish Bhatt, Vineeth Sai Narajala, Idan Habler</p>
+                        <p><strong>Abstract:</strong> The Model Context Protocol (MCP) plays a crucial role in extending the capabilities of Large Language Models (LLMs) by enabling integration with external tools and data sources. However, the standard MCP specification presents significant security vulnerabilities, notably Tool Poisoning and Rug Pull attacks. This paper introduces the Enhanced Tool Definition Interface (ETDI), a security extension designed to fortify MCP.</p>
+                        <p><a href="https://arxiv.org/abs/2506.01333" target="_blank" class="btn">📖 Read Full Paper on arXiv</a></p>
+                    </div>
+
+                    <h3>Implementation Contributions</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h4>🔧 MCP Core Specification</h4>
+                            <p>ETDI specification proposal for the main Model Context Protocol repository.</p>
+                            <p><a href="https://github.com/modelcontextprotocol/modelcontextprotocol/pull/649" target="_blank" class="btn">View PR #649</a></p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🐍 Python SDK Implementation</h4>
+                            <p>Reference implementation of ETDI in the official Python SDK with examples and documentation.</p>
+                            <p><a href="https://github.com/modelcontextprotocol/python-sdk/pull/845" target="_blank" class="btn">View PR #845</a></p>
+                        </div>
+                    </div>
+
+                    <h3>Research Authors</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h4>👨‍💻 Vineeth Sai Narajala</h4>
+                            <p>Lead researcher and developer of ETDI framework. Security engineer specializing in AI/ML security and distributed systems.</p>
+                            <p><a href="https://www.linkedin.com/in/vineethsai/" target="_blank">LinkedIn Profile</a></p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>👨‍🔬 Manish Bhatt</h4>
+                            <p>Co-researcher focusing on cryptographic security and policy-based access control systems for AI applications.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>🔒 Idan Habler</h4>
+                            <p>Security researcher contributing to OAuth integration and enterprise security frameworks for MCP.</p>
+                        </div>
+                    </div>
+
+                    <div class="note">
+                        <strong>Citation:</strong> If you use ETDI in your research or implementation, please cite: Bhatt, M., Narajala, V.S., & Habler, I. (2025). ETDI: Mitigating Tool Squatting and Rug Pull Attacks in Model Context Protocol (MCP) by using OAuth-Enhanced Tool Definitions and Policy-Based Access Control. arXiv preprint arXiv:2506.01333.
                     </div>
                 </section>
             </main>
