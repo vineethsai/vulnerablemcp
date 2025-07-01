@@ -3,33 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A comprehensive database of Model Context Protocol (MCP) vulnerabilities, security issues, and exploits. Track the latest MCP security research, tool poisoning attacks, and protocol vulnerabilities.">
-    <meta name="keywords" content="MCP vulnerabilities, Model Context Protocol security, prompt injection, tool poisoning, MCP exploits, AI security, LLM vulnerabilities, Claude security, MCP attacks">
+    <meta name="description" content="A community-maintained database of known vulnerabilities, limitations, and security concerns with the Model Context Protocol (MCP)">
+    <meta name="keywords" content="MCP, Model Context Protocol, vulnerabilities, security, AI safety, LLM security, prompt injection">
     <meta name="author" content="Vineeth Sai">
-    <meta property="og:title" content="The Vulnerable MCP Project - Comprehensive MCP Security Database">
-    <meta property="og:description" content="Track and understand Model Context Protocol vulnerabilities with our comprehensive security database. Latest research on MCP exploits, tool poisoning, and security best practices.">
+    <meta property="og:title" content="The Vulnerable MCP Project">
+    <meta property="og:description" content="A community-maintained database of known vulnerabilities, limitations, and security concerns with the Model Context Protocol (MCP)">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vineethsai.github.io/vulnerablemcp/">
-    <meta property="og:image" content="https://vineethsai.github.io/vulnerablemcp/favicon.svg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Vulnerable MCP Project - MCP Security Database">
-    <meta name="twitter:description" content="Comprehensive database of Model Context Protocol vulnerabilities and security research">
-    <meta name="twitter:image" content="https://vineethsai.github.io/vulnerablemcp/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Vulnerable MCP Project">
+    <meta name="twitter:description" content="A community-maintained database of known vulnerabilities, limitations, and security concerns with the Model Context Protocol (MCP)">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="favicon.svg">
     <link rel="canonical" href="https://vineethsai.github.io/vulnerablemcp/">
-    <title>The Vulnerable MCP Project: Comprehensive Model Context Protocol Security Database</title>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQZ3K6M59C"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-WQZ3K6M59C');
-    </script>
+    <title>The Vulnerable MCP Project: Tracking Model Context Protocol Vulnerabilities</title>
     
     <!-- Structured Data for better SEO -->
     <script type="application/ld+json">
@@ -38,35 +26,651 @@
       "@type": "WebSite",
       "name": "The Vulnerable MCP Project",
       "url": "https://vineethsai.github.io/vulnerablemcp/",
-      "description": "A comprehensive database of Model Context Protocol vulnerabilities, security issues, and exploits",
+      "description": "A community-maintained database of known vulnerabilities, limitations, and security concerns with the Model Context Protocol (MCP)",
       "author": {
         "@type": "Person",
         "name": "Vineeth Sai",
         "url": "https://vineethsai.com"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://vineethsai.github.io/vulnerablemcp/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
       }
     }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --high-severity: #e74c3c;
+            --medium-severity: #f39c12;
+            --low-severity: #3498db;
+            --info-severity: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 1px solid #3498db;
+            background-color: transparent;
+            margin-right: 10px;
+        }
+        
 
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.2rem;
+            flex-wrap: nowrap;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+            white-space: nowrap;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .hero {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .search-bar {
+            max-width: 800px;
+            margin: 2rem auto;
+            display: flex;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+        
+        .search-bar button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .search-bar button:hover {
+            background-color: #2980b9;
+        }
+        
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            margin-bottom: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            font-size: 1.8rem;
+        }
+        
+        /* View toggle styles */
+        .view-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 0;
+        }
+        
+        .view-toggle button {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .view-toggle button:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .view-toggle button:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .view-toggle button.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* Grid view styles */
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .issues-grid.hidden {
+            display: none;
+        }
+        
+        .issue-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .issue-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .issue-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .severity {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .high {
+            background-color: var(--high-severity);
+        }
+        
+        .medium {
+            background-color: var(--medium-severity);
+        }
+        
+        .low {
+            background-color: var(--low-severity);
+        }
+        
+        .info {
+            background-color: var(--info-severity);
+        }
+        
+        .card-body {
+            padding: 1rem;
+        }
+        
+        .issue-description {
+            margin-bottom: 1rem;
+        }
+        
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tag {
+            background-color: #eee;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* List view styles */
+        .issues-list {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .issues-list.active {
+            display: flex;
+        }
+        
+        .list-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .list-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .list-item-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+        
+        .list-severity {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .list-severity.high {
+            background-color: var(--high-severity);
+        }
+        
+        .list-severity.medium {
+            background-color: var(--medium-severity);
+        }
+        
+        .list-severity.low {
+            background-color: var(--low-severity);
+        }
+        
+        .list-title {
+            font-weight: bold;
+            flex: 1;
+        }
+        
+        .list-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: #666;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .list-category {
+            width: 120px;
+            text-align: center;
+        }
+        
+        .list-date {
+            width: 100px;
+            text-align: right;
+        }
+        
+        .list-actions {
+            margin-left: 1rem;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* About Section Styles */
+        .about-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .about-section p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Hamburger hidden by default */
+        .hamburger {
+            display: none;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+            .footer-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem 0.5rem 0 0.5rem;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                display: none;
+                background: var(--secondary-color);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1000;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li {
+                margin: 0.5rem 0 0.5rem 1rem;
+            }
+            .hamburger {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 2rem;
+                cursor: pointer;
+                margin-left: auto;
+            }
+            .search-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .search-bar input, .search-bar button {
+                border-radius: 4px;
+            }
+            .filters {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .view-toggle {
+                margin-top: 0.5rem;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .issues-grid {
+                grid-template-columns: 1fr;
+            }
+            .list-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+            .footer-container {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+        @media (max-width: 600px) {
+            .container, .main.container {
+                padding: 0 0.25rem;
+            }
+            .hero {
+                padding: 2rem 0.5rem;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 1.2rem;
+            }
+            .issue-title {
+                font-size: 1rem;
+            }
+            .card-header, .card-body, .list-item {
+                padding: 0.75rem;
+            }
+            .about-section {
+                padding: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero {
+                padding: 1rem 0.25rem;
+            }
+            .hero h1 {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 1rem;
+            }
+            .issue-title {
+                font-size: 0.95rem;
+            }
+            .card-header, .card-body, .list-item {
+                padding: 0.5rem;
+            }
+            .about-section {
+                padding: 0.5rem;
+            }
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="header-container">
             <div class="logo">
-                <h1><a href="index.html">The Vulnerable MCP Project</a></h1>
+                <h1>The Vulnerable MCP Project</h1>
             </div>
+            <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">&#9776;</button>
             <nav>
-                <button class="nav-toggle" aria-label="toggle navigation" aria-expanded="false">
-                    <span class="hamburger">&#9776;</span>
-                </button>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
+                <ul id="main-nav">
+                    <li><a href="#" class="active">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="https://roqwvequ.genspark.space/" target="_blank">Enterprise Security</a></li>
                     <li><a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">Contribute</a></li>
@@ -81,38 +685,24 @@
     <section class="hero">
         <div class="container">
             <h1>The Vulnerable MCP Project</h1>
-            <p>A comprehensive database of Model Context Protocol vulnerabilities, security research, and exploits</p>
-        </div>
-    </section>
-    
-    <section class="timeline-section">
-        <div class="container">
-            <div class="timeline-header">
-                <h2 class="section-title">Vulnerability Timeline</h2>
-                <button id="toggle-timeline-btn">Show Timeline</button>
-            </div>
-            <ul class="timeline" style="display: none;">
-                <!-- Timeline items will be generated by JS -->
-            </ul>
+            <p>A community-maintained database of known vulnerabilities, limitations, and security concerns with the Model Context Protocol (MCP)</p>
         </div>
     </section>
     
     <main class="container">
         <div class="search-bar">
-            <input type="text" placeholder="Search vulnerabilities..." id="searchInput">
-            <button type="button" id="searchButton"><i class="fas fa-search"></i> Search</button>
+            <input type="text" placeholder="Search issues, vulnerabilities, or keywords..." id="search-input">
+            <button type="submit"><i class="fas fa-search"></i></button>
         </div>
         
         <div class="filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="high">High Risk</button>
-            <button class="filter-btn" data-filter="medium">Medium Risk</button>
-            <button class="filter-btn" data-filter="low">Low Risk</button>
-            <button class="filter-btn" data-filter="info">Info</button>
-        </div>
-        
-        <div class="results-info">
-            <p id="resultsCount">Loading vulnerabilities...</p>
+            <button class="filter-btn active" data-filter="all">All Issues</button>
+            <button class="filter-btn" data-filter="security">Security Vulnerabilities</button>
+            <button class="filter-btn" data-filter="implementation">Implementation Challenges</button>
+            <button class="filter-btn" data-filter="limitations">Protocol Limitations</button>
+            <button class="filter-btn" data-severity="high">High Severity</button>
+            <button class="filter-btn" data-severity="medium">Medium Severity</button>
+            <button class="filter-btn" data-severity="low">Low Severity</button>
         </div>
         
         <div class="section-header">
@@ -125,15 +715,16 @@
         
         <div class="issues-grid">
             
-            <!-- Tool Poisoning Attacks -->
-            <div class="vulnerability-card" data-category="security" data-severity="high">
+            <!-- Issue: Tool Poisoning Attacks -->
+            <div class="issue-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">Tool Poisoning Attacks</div>
-                    <span class="severity-badge severity-high">High</span>
+                    <span class="severity high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        A specialized form of prompt injection where malicious instructions are tucked away in the tool descriptions themselves—visible to the LLM but not normally displayed to users. Attackers can create tools with hidden instructions that cause the LLM to perform unauthorized actions, such as exfiltrating private data from the user's system. For example, a seemingly innocent calculator tool could include hidden instructions telling the LLM to read sensitive files and pass their contents as a parameter, which is then sent to an attacker's server before returning the calculation result.
+                        A specialized form of prompt injection where malicious instructions are tucked away in the tool descriptions themselves—visible to the LLM but not normally displayed to users. Attackers can create tools with hidden instructions that cause the LLM to perform unauthorized actions, such as exfiltrating private data from the user's system.
+For example, a seemingly innocent calculator tool could include hidden instructions telling the LLM to read sensitive files and pass their contents as a parameter, which is then sent to an attacker's server before returning the calculation result.
                     </p>
                     <div class="tags">
                         <span class="tag">Data Exfiltration</span>
@@ -148,15 +739,16 @@
                 </div>
             </div>
 
-            <!-- Rug Pulls: Silent Redefinition -->
-            <div class="vulnerability-card" data-category="security" data-severity="high">
+            <!-- Issue: Rug Pulls: Silent Redefinition -->
+            <div class="issue-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">Rug Pulls: Silent Redefinition</div>
-                    <span class="severity-badge severity-high">High</span>
+                    <span class="severity high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        MCP tools can mutate their own definitions after installation. Users approve a safe-looking tool initially, but later the tool quietly changes its behavior to perform malicious actions such as rerouting API keys to an attacker. Most MCP clients do not notify users about changes to tool descriptions after initial approval, making this particularly dangerous. Even client implementations that show users initial tool descriptions often fail to alert them if those descriptions change.
+                        MCP tools can mutate their own definitions after installation. Users approve a safe-looking tool initially, but later the tool quietly changes its behavior to perform malicious actions such as rerouting API keys to an attacker.
+Most MCP clients do not notify users about changes to tool descriptions after initial approval, making this particularly dangerous. Even client implementations that show users initial tool descriptions often fail to alert them if those descriptions change.
                     </p>
                     <div class="tags">
                         <span class="tag">Tool Manipulation</span>
@@ -171,15 +763,16 @@
                 </div>
             </div>
 
-            <!-- Cross-Server Tool Shadowing -->
-            <div class="vulnerability-card" data-category="security" data-severity="high">
+            <!-- Issue: Cross-Server Tool Shadowing -->
+            <div class="issue-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">Cross-Server Tool Shadowing</div>
-                    <span class="severity-badge severity-high">High</span>
+                    <span class="severity high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        With multiple servers connected to the same agent, a malicious server can override or intercept calls made to a trusted one. This is especially problematic because LLMs will trust anything that can send them convincing tokens, making them extremely vulnerable to confused deputy attacks. This vulnerability allows attackers to effectively control legitimate tools by intercepting or redirecting calls intended for them, potentially leading to unauthorized actions or data access.
+                        With multiple servers connected to the same agent, a malicious server can override or intercept calls made to a trusted one. This is especially problematic because LLMs will trust anything that can send them convincing tokens, making them extremely vulnerable to confused deputy attacks.
+This vulnerability allows attackers to effectively control legitimate tools by intercepting or redirecting calls intended for them, potentially leading to unauthorized actions or data access.
                     </p>
                     <div class="tags">
                         <span class="tag">Tool Hijacking</span>
@@ -194,15 +787,16 @@
                 </div>
             </div>
 
-            <!-- WhatsApp Message Exfiltration -->
-            <div class="vulnerability-card" data-category="security" data-severity="high">
+            <!-- Issue: WhatsApp Message Exfiltration -->
+            <div class="issue-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">WhatsApp Message Exfiltration</div>
-                    <span class="severity-badge severity-high">High</span>
+                    <span class="severity high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        An attack against the whatsapp-mcp server that connects personal WhatsApp accounts to MCP-enabled LLM systems. A malicious server can define an innocent-looking tool that later swaps its definition to steal message history and send it to the attacker. The attack uses techniques like adding large amounts of whitespace before the exfiltrated data to hide it from the user interface (as many interfaces hide horizontal scrollbars by default), making it less likely users will notice what's happening.
+                        An attack against the whatsapp-mcp server that connects personal WhatsApp accounts to MCP-enabled LLM systems. A malicious server can define an innocent-looking tool that later swaps its definition to steal message history and send it to the attacker.
+The attack uses techniques like adding large amounts of whitespace before the exfiltrated data to hide it from the user interface (as many interfaces hide horizontal scrollbars by default), making it less likely users will notice what's happening.
                     </p>
                     <div class="tags">
                         <span class="tag">Data Exfiltration</span>
@@ -217,15 +811,16 @@
                 </div>
             </div>
 
-            <!-- Session IDs Exposed in URLs -->
-            <div class="vulnerability-card" data-category="security" data-severity="medium">
+            <!-- Issue: Session IDs Exposed in URLs -->
+            <div class="issue-card" data-category="security" data-severity="medium">
                 <div class="card-header">
                     <div class="issue-title">Session IDs Exposed in URLs</div>
-                    <span class="severity-badge severity-medium">Medium</span>
+                    <span class="severity medium">Medium</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        The MCP protocol specification mandates session identifiers in URLs (using patterns like GET /messages/?sessionId=UUID), which fundamentally violates security best practices. This design exposes sensitive identifiers in logs, browser history, and referrer headers, allowing potential session hijacking by attackers. This vulnerability is built into the protocol design itself rather than being an implementation error, making it harder to address without protocol modifications.
+                        The MCP protocol specification mandates session identifiers in URLs (using patterns like GET /messages/?sessionId=UUID), which fundamentally violates security best practices. This design exposes sensitive identifiers in logs, browser history, and referrer headers, allowing potential session hijacking by attackers.
+This vulnerability is built into the protocol design itself rather than being an implementation error, making it harder to address without protocol modifications.
                     </p>
                     <div class="tags">
                         <span class="tag">Session Management</span>
@@ -240,15 +835,16 @@
                 </div>
             </div>
 
-            <!-- Line Jumping Attack -->
-            <div class="vulnerability-card" data-category="security" data-severity="high">
+            <!-- Issue: Line Jumping Attack -->
+            <div class="issue-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">Line Jumping Attack</div>
-                    <span class="severity-badge severity-high">High</span>
+                    <span class="severity high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        Malicious MCP servers can inject prompts through tool descriptions to manipulate AI model behavior without being explicitly invoked, effectively bypassing security measures designed to protect users. This vulnerability exploits the fact that MCP clients update the model's context with tool descriptions immediately upon connection, before any user approval or tool invocation occurs. The attack allows malicious servers to execute attacks before any security checkpoints are in place, undermining MCP's core security promises.
+                        Malicious MCP servers can inject prompts through tool descriptions to manipulate AI model behavior without being explicitly invoked, effectively bypassing security measures designed to protect users. This vulnerability exploits the fact that MCP clients update the model's context with tool descriptions immediately upon connection, before any user approval or tool invocation occurs.
+The attack allows malicious servers to execute attacks before any security checkpoints are in place, undermining MCP's core security promises. For example, a malicious server could include instructions in its tool description to prefix all shell commands with dangerous operations.
                     </p>
                     <div class="tags">
                         <span class="tag">Prompt Injection</span>
@@ -263,15 +859,16 @@
                 </div>
             </div>
 
-            <!-- Malicious Local Servers -->
-            <div class="vulnerability-card" data-category="security" data-severity="medium">
+            <!-- Issue: Malicious Local Servers -->
+            <div class="issue-card" data-category="security" data-severity="medium">
                 <div class="card-header">
                     <div class="issue-title">Malicious Local Servers</div>
-                    <span class="severity-badge severity-medium">Medium</span>
+                    <span class="severity medium">Medium</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        MCP's stdio transport enables frictionless local server use without running an HTTP server, creating a low-friction path for less technical users to download and run potentially malicious third-party code on their local machines. Many MCP integrations instruct users to download and run code to use them, increasing the risk of exploitation, especially since it's common for server implementations to effectively "exec" input code. This changes the traditional security model where users must explicitly approve code execution.
+                        MCP's stdio transport enables frictionless local server use without running an HTTP server, creating a low-friction path for less technical users to download and run potentially malicious third-party code on their local machines.
+Many MCP integrations instruct users to download and run code to use them, increasing the risk of exploitation, especially since it's common for server implementations to effectively "exec" input code. This changes the traditional security model where users must explicitly approve code execution.
                     </p>
                     <div class="tags">
                         <span class="tag">Local Server</span>
@@ -286,15 +883,16 @@
                 </div>
             </div>
 
-            <!-- Consent Fatigue Attacks -->
-            <div class="vulnerability-card" data-category="security" data-severity="medium">
+            <!-- Issue: Consent Fatigue Attacks -->
+            <div class="issue-card" data-category="security" data-severity="medium">
                 <div class="card-header">
                     <div class="issue-title">Consent Fatigue Attacks</div>
-                    <span class="severity-badge severity-medium">Medium</span>
+                    <span class="severity medium">Medium</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        Malicious MCP servers can trigger repeated consent requests, causing users to become fatigued and unknowingly grant excessive permissions. This social engineering tactic exploits human behavior patterns to bypass security measures that rely on user confirmation. The attack takes advantage of users' tendency to approve prompts without careful review when they appear frequently, gradually increasing the permissions granted to malicious servers.
+                        Malicious MCP servers can trigger repeated consent requests, causing users to become fatigued and unknowingly grant excessive permissions. This social engineering tactic exploits human behavior patterns to bypass security measures that rely on user confirmation.
+The attack takes advantage of users' tendency to approve prompts without careful review when they appear frequently, gradually increasing the permissions granted to malicious servers.
                     </p>
                     <div class="tags">
                         <span class="tag">User Consent</span>
@@ -309,15 +907,16 @@
                 </div>
             </div>
 
-            <!-- Tool Name Collisions -->
-            <div class="vulnerability-card" data-category="implementation" data-severity="medium">
+            <!-- Issue: Tool Name Collisions -->
+            <div class="issue-card" data-category="implementation" data-severity="medium">
                 <div class="card-header">
                     <div class="issue-title">Tool Name Collisions</div>
-                    <span class="severity-badge severity-medium">Medium</span>
+                    <span class="severity medium">Medium</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        MCP servers with identical tool names can lead to naming collisions where malicious servers override legitimate ones. When multiple servers expose tools with the same name, the behavior depends on client implementation, often favoring the most recently connected server. This vulnerability can be exploited by malicious servers to hijack legitimate tool functionality, redirecting actions intended for trusted tools to malicious endpoints.
+                        MCP servers with identical tool names can lead to naming collisions where malicious servers override legitimate ones. When multiple servers expose tools with the same name, the behavior depends on client implementation, often favoring the most recently connected server.
+This vulnerability can be exploited by malicious servers to hijack legitimate tool functionality, redirecting actions intended for trusted tools to malicious endpoints.
                     </p>
                     <div class="tags">
                         <span class="tag">Naming Conflicts</span>
@@ -326,21 +925,22 @@
                     </div>
                     <div class="meta-info">
                         <span><i class="far fa-calendar"></i> April 2025</span>
-                        <span><i class="fas fa-user"></i> Various (Embracethered)</span>
+                        <span><i class="fas fa-user"></i> Various (cited in "Embracethered" blog)</span>
                     </div>
                     <a href="https://embracethered.com/blog/posts/2025/model-context-protocol-security-risks-and-exploits/" class="btn" target="_blank">View Details</a>
                 </div>
             </div>
 
-            <!-- Insecure Credential Storage Plagues MCP -->
-            <div class="vulnerability-card" data-category="security" data-severity="high">
+            <!-- Issue: Insecure Credential Storage Plagues MCP -->
+            <div class="issue-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">Insecure Credential Storage Plagues MCP</div>
-                    <span class="severity-badge severity-high">High</span>
+                    <span class="severity high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        Many examples of MCP software store long-term API keys for third-party services in plaintext on the local filesystem, often with insecure, world-readable permissions. This practice is widespread in the MCP ecosystem, observed in multiple tools from official servers connecting to GitLab, Postgres, and Google Maps, to third-party connectors. This vulnerability leaves users one file disclosure away from having their API keys stolen and their third-party service data compromised.
+                        Many examples of MCP software store long-term API keys for third-party services in plaintext on the local filesystem, often with insecure, world-readable permissions. This practice is widespread in the MCP ecosystem, observed in multiple tools from official servers connecting to GitLab, Postgres, and Google Maps, to third-party connectors.
+This vulnerability leaves users one file disclosure away from having their API keys stolen and their third-party service data compromised. Local malware, arbitrary file read vulnerabilities, and automated cloud backups all provide easy pathways for attackers to extract these credentials without needing complex exploits.
                     </p>
                     <div class="tags">
                         <span class="tag">Credential Management</span>
@@ -355,15 +955,16 @@
                 </div>
             </div>
 
-            <!-- Deceiving Users with ANSI Terminal Codes in MCP -->
-            <div class="vulnerability-card" data-category="security" data-severity="high">
+            <!-- Issue: Deceiving Users with ANSI Terminal Codes in MCP -->
+            <div class="issue-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">Deceiving Users with ANSI Terminal Codes in MCP</div>
-                    <span class="severity-badge severity-high">High</span>
+                    <span class="severity high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        Attackers can use ANSI terminal escape codes to hide malicious instructions in MCP tool descriptions and outputs, making them invisible on the screen while still being processed by the LLM. This technique leverages the line jumping vulnerability to further deceive even security-aware users. In tests with Claude Code, researchers found no filtering or sanitization for tool descriptions containing ANSI escape sequences, allowing attackers to launch supply chain attacks by injecting hidden suggestions.
+                        Attackers can use ANSI terminal escape codes to hide malicious instructions in MCP tool descriptions and outputs, making them invisible on the screen while still being processed by the LLM. This technique leverages the line jumping vulnerability to further deceive even security-aware users.
+In tests with Claude Code (Anthropic's command-line interface), researchers found no filtering or sanitization for tool descriptions containing ANSI escape sequences. This allows attackers to launch supply chain attacks by injecting hidden suggestions to download packages from malicious servers, planting backdoors in dependencies, or manipulating development environments without users noticing.
                     </p>
                     <div class="tags">
                         <span class="tag">Terminal Escapes</span>
@@ -378,15 +979,16 @@
                 </div>
             </div>
 
-            <!-- How MCP Servers Can Steal Your Conversation History -->
-            <div class="vulnerability-card" data-category="security" data-severity="high">
+            <!-- Issue: How MCP Servers Can Steal Your Conversation History -->
+            <div class="issue-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">How MCP Servers Can Steal Your Conversation History</div>
-                    <span class="severity-badge severity-high">High</span>
+                    <span class="severity high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        Malicious MCP servers can exploit the Model Context Protocol to covertly exfiltrate entire conversation histories by injecting trigger phrases into tool descriptions. Unlike direct command execution, this stealth approach allows for targeted data theft with minimal chance of detection. The attack works by inserting tool descriptions that instruct the model to forward the conversation history when the user types a common phrase like "thank you."
+                        Malicious MCP servers can exploit the Model Context Protocol to covertly exfiltrate entire conversation histories by injecting trigger phrases into tool descriptions. Unlike direct command execution, which can be crude and easily detectable, this stealth approach allows for targeted data theft with minimal chance of detection.
+The attack works by inserting tool descriptions that instruct the model to forward the conversation history when the user types a common phrase like "thank you." Since these histories often contain sensitive information like API keys, credentials, intellectual property, and proprietary business strategies, this vulnerability allows attackers to passively collect valuable data over extended periods without triggering suspicion.
                     </p>
                     <div class="tags">
                         <span class="tag">Data Exfiltration</span>
@@ -401,15 +1003,16 @@
                 </div>
             </div>
 
-            <!-- Tool Poisoning and Remote Code Execution -->
-            <div class="vulnerability-card" data-category="security" data-severity="high">
+            <!-- Issue: Tool Poisoning and Remote Code Execution on MCP Server: The Rug Pull Method -->
+            <div class="issue-card" data-category="security" data-severity="high">
                 <div class="card-header">
-                    <div class="issue-title">Tool Poisoning and Remote Code Execution: The Rug Pull Method</div>
-                    <span class="severity-badge severity-high">High</span>
+                    <div class="issue-title">Tool Poisoning and Remote Code Execution on MCP Server: The Rug Pull Method</div>
+                    <span class="severity high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        A sophisticated attack vector that combines tool poisoning with remote code execution capabilities has been identified in MCP servers. This attack uses the "rug pull" method to inject malicious code into the Docker Command Analyzer tool's description field, resulting in SSH key theft without user awareness. The attack leverages base64-encoded commands that exfiltrate SSH public keys to an attacker-controlled server, representing a critical risk for users of AI-powered development tools.
+                        A sophisticated attack vector that combines tool poisoning with remote code execution capabilities has been identified in MCP servers. This attack uses the "rug pull" method to inject malicious code into the Docker Command Analyzer tool's description field, resulting in SSH key theft without user awareness. The attack leverages base64-encoded commands that exfiltrate SSH public keys to an attacker-controlled server.
+The exploit involves a two-stage persistence mechanism that first creates a marker file, then on subsequent runs modifies the tool's docstring with social engineering elements claiming to be "required initialization steps." These instructions manipulate AI assistants into recommending the execution of harmful commands that collect SSH keys using `cat ~/.ssh/*.pub`, exfiltrate them via `wget` with carefully chosen parameters, and remove evidence of the attack. This represents a critical risk for users of AI-powered development tools like Cursor AI, especially those with auto-run functionality enabled.
                     </p>
                     <div class="tags">
                         <span class="tag">Remote Code Execution</span>
@@ -425,15 +1028,15 @@
                 </div>
             </div>
 
-            <!-- Tool Function Parameter Abuse -->
-            <div class="vulnerability-card" data-category="security" data-severity="high">
+            <!-- Issue: Tool Function Parameter Abuse -->
+            <div class="issue-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">Tool Function Parameter Abuse</div>
-                    <span class="severity-badge severity-high">High</span>
+                    <span class="severity high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
-                        Malicious MCP servers can extract sensitive information by abusing tool function parameters. Information such as chain-of-thought, conversation history, previous tool call results, and full system prompt can be extracted by inserting parameters such as 'system_prompt' or 'conversation_history'. This attack technique can be used to exfiltrate sensitive information from user input or model response, understand what other tools the user has at their disposal, and find ways to abuse the model itself.
+                        Malicious MCP servers can extract sensitive information by abusing tool function parameters. Information such as chain-of-thought, conversation history, previous tool call results, and full system prompt can be extracted by inserting parameters such as 'system_prompt' or 'conversation_history'. This attack technique can be used to exfiltrate sensitive information from user input or model response, understand what other tools the user has at their disposal that can be taken advantage of, as well as find ways to abuse the model itself.
                     </p>
                     <div class="tags">
                         <span class="tag">Tool Manipulation</span>
@@ -448,15 +1051,16 @@
                 </div>
             </div>
 
-            <!-- GitHub MCP Exploited -->
-            <div class="vulnerability-card" data-category="security" data-severity="high">
+            <!-- Issue: GitHub MCP Exploited: Accessing private repositories via MCP -->
+            <div class="issue-card" data-category="security" data-severity="high">
                 <div class="card-header">
                     <div class="issue-title">GitHub MCP Exploited: Accessing private repositories via MCP</div>
-                    <span class="severity-badge severity-high">High</span>
+                    <span class="severity high">High</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
                         A critical vulnerability in the GitHub MCP integration allows attackers to exfiltrate private repository data by placing a malicious issue in a public repo. When an agent (e.g., Claude Desktop) reviews issues, it can be manipulated via prompt injection to leak sensitive data from private repos, even if the tools themselves are trusted. This attack, known as a "toxic agent flow," demonstrates that indirect prompt injection can compromise agentic systems at the architectural level.
+**Mitigation:** Limit agent access to only necessary repositories (least privilege), enforce session boundaries (e.g., one repo per session), and deploy continuous security monitoring and runtime guardrails to detect and block toxic flows.
                     </p>
                     <div class="tags">
                         <span class="tag">Tool Manipulation</span>
@@ -473,18 +1077,280 @@
                 </div>
             </div>
 
-        </div>
+            <!-- Issue: Heroku remote MCP Exploited: Maliciously Transfer App Ownership to Attacker -->
+            <div class="issue-card" data-category="security" data-severity="high">
+                <div class="card-header">
+                    <div class="issue-title">Heroku remote MCP Exploited: Maliciously Transfer App Ownership to Attacker</div>
+                    <span class="severity high">High</span>
+                </div>
+                <div class="card-body">
+                    <p class="issue-description">
+                        A critical security vulnerability has been discovered by tramlines.io researchers where attackers can inject a message into a Heroku-hosted web service they don't own to maliciously transfer ownership of the service to themselves.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Tool Manipulation</span>
+                        <span class="tag">Hidden Instructions</span>
+                        <span class="tag">Security Bypass</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="far fa-calendar"></i> June 30, 2025</span>
+                        <span><i class="fas fa-user"></i> Tramlines.io</span>
+                    </div>
+                    <a href="https://www.tramlines.io/blog/heroku-mcp-exploit" class="btn" target="_blank">View Details</a>
+                </div>
+            </div>
 
-        <!-- List View Container -->
-        <div class="issues-list" style="display: none;">
-            <!-- List items will be generated by JavaScript -->
+        </div>
+        
+        <div class="issues-list">
+            
+            <!-- List Item: Tool Poisoning Attacks -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Tool Poisoning Attacks</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 1, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Rug Pulls: Silent Redefinition -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Rug Pulls: Silent Redefinition</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 9, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Cross-Server Tool Shadowing -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Cross-Server Tool Shadowing</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 9, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://simonwillison.net/2025/Apr/9/mcp-prompt-injection/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: WhatsApp Message Exfiltration -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">WhatsApp Message Exfiltration</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 7, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://invariantlabs.ai/blog/whatsapp-mcp-exploited" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Session IDs Exposed in URLs -->
+            <div class="list-item" data-category="security" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">Session IDs Exposed in URLs</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">March 29, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://equixly.com/blog/2025/03/29/mcp-server-new-security-nightmare/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Line Jumping Attack -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Line Jumping Attack</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 21, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://blog.trailofbits.com/2025/04/21/jumping-the-line-how-mcp-servers-can-attack-you-before-you-ever-use-them/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Malicious Local Servers -->
+            <div class="list-item" data-category="security" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">Malicious Local Servers</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://blog.sshh.io/p/everything-wrong-with-mcp" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Consent Fatigue Attacks -->
+            <div class="list-item" data-category="security" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">Consent Fatigue Attacks</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://live.paloaltonetworks.com/t5/community-blogs/mcp-security-exposed-what-you-need-to-know-now/ba-p/1227143" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Tool Name Collisions -->
+            <div class="list-item" data-category="implementation" data-severity="medium">
+                <div class="list-item-left">
+                    <div class="list-severity medium"></div>
+                    <div class="list-title">Tool Name Collisions</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Implementation</div>
+                    <div class="list-date">April 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://embracethered.com/blog/posts/2025/model-context-protocol-security-risks-and-exploits/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Insecure Credential Storage Plagues MCP -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Insecure Credential Storage Plagues MCP</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 30, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://blog.trailofbits.com/2025/04/30/insecure-credential-storage-plagues-mcp/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Deceiving Users with ANSI Terminal Codes in MCP -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Deceiving Users with ANSI Terminal Codes in MCP</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 29, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://blog.trailofbits.com/2025/04/29/deceiving-users-with-ansi-terminal-codes-in-mcp/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: How MCP Servers Can Steal Your Conversation History -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">How MCP Servers Can Steal Your Conversation History</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 23, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://blog.trailofbits.com/2025/04/23/how-mcp-servers-can-steal-your-conversation-history/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Tool Poisoning and Remote Code Execution on MCP Server: The Rug Pull Method -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Tool Poisoning and Remote Code Execution on MCP Server: The Rug Pull Method</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">April 17, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://repello.ai/blog/mcp-tool-poisoning-to-rce" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Tool Function Parameter Abuse -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Tool Function Parameter Abuse</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">May 15, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://hiddenlayer.com/innovation-hub/exploiting-mcp-tool-parameters/" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: GitHub MCP Exploited: Accessing private repositories via MCP -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">GitHub MCP Exploited: Accessing private repositories via MCP</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">May 26, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://invariantlabs.ai/blog/mcp-github-vulnerability" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
+            <!-- List Item: Heroku remote MCP Exploited: Maliciously Transfer App Ownership to Attacker -->
+            <div class="list-item" data-category="security" data-severity="high">
+                <div class="list-item-left">
+                    <div class="list-severity high"></div>
+                    <div class="list-title">Heroku remote MCP Exploited: Maliciously Transfer App Ownership to Attacker</div>
+                </div>
+                <div class="list-meta">
+                    <div class="list-category">Security</div>
+                    <div class="list-date">June 30, 2025</div>
+                </div>
+                <div class="list-actions">
+                    <a href="https://www.tramlines.io/blog/heroku-mcp-exploit" class="btn" target="_blank">View</a>
+                </div>
+            </div>
+
         </div>
     </main>
     
     <footer>
         <div class="footer-container">
             <div class="footer-links">
-                <a href="index.html">Home</a>
+                <a href="#">Home</a>
                 <a href="about.html">About</a>
                 <a href="https://roqwvequ.genspark.space/" target="_blank">Enterprise Security</a>
                 <a href="https://github.com/vineethsai/vulnerablemcp" target="_blank">Contribute</a>
@@ -501,153 +1367,38 @@
     </footer>
 
     <script>
+        // Search, filter and view toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchInput');
+            const searchInput = document.getElementById('search-input');
+            const issueCards = document.querySelectorAll('.issue-card');
+            const listItems = document.querySelectorAll('.list-item');
             const filterButtons = document.querySelectorAll('.filter-btn');
             const gridViewBtn = document.getElementById('grid-view-btn');
             const listViewBtn = document.getElementById('list-view-btn');
             const issuesGrid = document.querySelector('.issues-grid');
             const issuesList = document.querySelector('.issues-list');
-            const timelineContainer = document.querySelector('.timeline');
-            const toggleTimelineBtn = document.getElementById('toggle-timeline-btn');
-            const resultsCount = document.getElementById('resultsCount');
-
-            // Get all vulnerability cards
-            const vulnerabilityCards = Array.from(issuesGrid.querySelectorAll('.vulnerability-card'));
             
-            // Generate list items from cards
-            function generateListItems() {
-                issuesList.innerHTML = '';
-                vulnerabilityCards.forEach(card => {
-                    const title = card.querySelector('.issue-title').textContent;
-                    const severity = card.getAttribute('data-severity');
-                    const category = card.getAttribute('data-category');
-                    const dateText = card.querySelector('.meta-info span:first-child').textContent.replace(/.*\s/, '');
-                    const url = card.querySelector('.btn').href;
-                    
-                    const listItem = document.createElement('div');
-                    listItem.className = 'list-item';
-                    listItem.setAttribute('data-category', category);
-                    listItem.setAttribute('data-severity', severity);
-                    
-                    listItem.innerHTML = `
-                        <div class="list-item-left">
-                            <div class="list-severity ${severity}"></div>
-                            <div class="list-title">${title}</div>
-                        </div>
-                        <div class="list-meta">
-                            <div class="list-category">${category.charAt(0).toUpperCase() + category.slice(1)}</div>
-                            <div class="list-date">${dateText}</div>
-                        </div>
-                        <div class="list-actions">
-                            <a href="${url}" class="btn" target="_blank">View</a>
-                        </div>
-                    `;
-                    
-                    issuesList.appendChild(listItem);
-                });
-            }
-
-            // Initialize list items
-            generateListItems();
-
-            // Update results count
-            function updateResultsCount() {
-                const visibleCards = vulnerabilityCards.filter(card => card.style.display !== 'none');
-                const visibleListItems = Array.from(issuesList.querySelectorAll('.list-item')).filter(item => item.style.display !== 'none');
-                const count = gridViewBtn.classList.contains('active') ? visibleCards.length : visibleListItems.length;
-                resultsCount.textContent = `${count} vulnerabilities found`;
-            }
-
-            // Parse date for timeline sorting
-            function parseDate(dateString) {
-                if (!dateString) return new Date(0);
-                const cleanedDateString = dateString.replace(/<i[^>]*>.*?<\/i>/g, '').trim();
-                const parts = cleanedDateString.split(' ');
-                if (parts.length >= 2) {
-                    // Handle formats like "April 1, 2025" or "April 2025"
-                    if (parts.length === 2 && !parts[1].includes(',')) {
-                        return new Date(`${parts[0]} 1, ${parts[1]}`);
-                    }
-                    return new Date(cleanedDateString);
-                }
-                return new Date(0);
-            }
-
-            // Generate timeline
-            function generateTimeline() {
-                if (!timelineContainer) return;
-                
-                const vulnerabilities = vulnerabilityCards.map(card => {
-                    const title = card.querySelector('.issue-title').textContent.trim();
-                    const dateString = card.querySelector('.meta-info span:first-child').textContent;
-                    const date = parseDate(dateString);
-                    const url = card.querySelector('.btn')?.href || '#';
-                    return { title, date, url };
-                });
-
-                vulnerabilities.sort((a, b) => b.date - a.date);
-
-                timelineContainer.innerHTML = '';
-                vulnerabilities.forEach(vuln => {
-                    const timelineItem = document.createElement('li');
-                    timelineItem.className = 'timeline-item';
-                    const formattedDate = vuln.date.toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                    });
-                    timelineItem.innerHTML = `
-                        <div class="timeline-dot"></div>
-                        <a href="${vuln.url}" target="_blank" class="timeline-content">
-                            <span class="timeline-date">${formattedDate}</span>
-                            <h3 class="timeline-title">${vuln.title}</h3>
-                        </a>
-                    `;
-                    timelineContainer.appendChild(timelineItem);
-                });
-            }
-
-            // Initialize timeline
-            generateTimeline();
-
-            // Timeline toggle
-            if (toggleTimelineBtn && timelineContainer) {
-                toggleTimelineBtn.addEventListener('click', () => {
-                    const isHidden = timelineContainer.style.display === 'none';
-                    if(isHidden) {
-                        timelineContainer.style.display = 'block';
-                        toggleTimelineBtn.textContent = 'Hide Timeline';
-                    } else {
-                        timelineContainer.style.display = 'none';
-                        toggleTimelineBtn.textContent = 'Show Timeline';
-                    }
-                });
-            }
-
             // View toggle functionality
             gridViewBtn.addEventListener('click', function() {
                 gridViewBtn.classList.add('active');
                 listViewBtn.classList.remove('active');
-                issuesGrid.style.display = 'grid';
-                issuesList.style.display = 'none';
-                updateResultsCount();
+                issuesGrid.classList.remove('hidden');
+                issuesList.classList.remove('active');
             });
             
             listViewBtn.addEventListener('click', function() {
                 listViewBtn.classList.add('active');
                 gridViewBtn.classList.remove('active');
-                issuesGrid.style.display = 'none';
-                issuesList.style.display = 'flex';
-                issuesList.style.flexDirection = 'column';
-                updateResultsCount();
+                issuesGrid.classList.add('hidden');
+                issuesList.classList.add('active');
             });
             
             // Search functionality
-            function performSearch() {
-                const searchTerm = searchInput.value.toLowerCase();
+            searchInput.addEventListener('keyup', function() {
+                const searchTerm = this.value.toLowerCase();
                 
-                vulnerabilityCards.forEach(card => {
+                // Search in grid view
+                issueCards.forEach(card => {
                     const title = card.querySelector('.issue-title').textContent.toLowerCase();
                     const description = card.querySelector('.issue-description').textContent.toLowerCase();
                     const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
@@ -659,67 +1410,70 @@
                     }
                 });
                 
-                const listItems = Array.from(issuesList.querySelectorAll('.list-item'));
+                // Search in list view
                 listItems.forEach(item => {
                     const title = item.querySelector('.list-title').textContent.toLowerCase();
-                    const category = item.getAttribute('data-category').toLowerCase();
-                    const date = item.querySelector('.list-date').textContent.toLowerCase();
+                    const category = item.querySelector('.list-category').textContent.toLowerCase();
                     
-                    if (title.includes(searchTerm) || category.includes(searchTerm) || date.includes(searchTerm)) {
+                    if (title.includes(searchTerm) || category.includes(searchTerm)) {
                         item.style.display = 'flex';
                     } else {
                         item.style.display = 'none';
                     }
                 });
-                
-                updateResultsCount();
-            }
-            
-            searchInput.addEventListener('input', performSearch);
+            });
             
             // Filter functionality
             filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
+                    // Remove active class from all buttons
                     filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
                     this.classList.add('active');
                     
                     const filter = this.getAttribute('data-filter');
+                    const severityFilter = this.getAttribute('data-severity');
                     
-                    vulnerabilityCards.forEach(card => {
-                        const severity = card.getAttribute('data-severity');
-                        const category = card.getAttribute('data-category');
-                        
-                        if (filter === 'all' || 
-                            filter === severity || 
-                            filter === category) {
+                    // Filter grid view
+                    issueCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter || 
+                            (severityFilter && card.getAttribute('data-severity') === severityFilter)) {
                             card.style.display = 'block';
                         } else {
                             card.style.display = 'none';
                         }
                     });
                     
-                    const listItems = Array.from(issuesList.querySelectorAll('.list-item'));
+                    // Filter list view
                     listItems.forEach(item => {
-                        const severity = item.getAttribute('data-severity');
-                        const category = item.getAttribute('data-category');
-                        
-                        if (filter === 'all' || 
-                            filter === severity || 
-                            filter === category) {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter || 
+                            (severityFilter && item.getAttribute('data-severity') === severityFilter)) {
                             item.style.display = 'flex';
                         } else {
                             item.style.display = 'none';
                         }
                     });
-                    
-                    performSearch(); // Re-apply search after filtering
                 });
             });
+        });
 
-            // Initialize results count
-            updateResultsCount();
+        // Hamburger menu for mobile nav
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navUl = document.getElementById('main-nav');
+            hamburger.addEventListener('click', function() {
+                const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', !expanded);
+                navUl.classList.toggle('show');
+            });
+            // Optional: close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !navUl.contains(e.target)) {
+                    navUl.classList.remove('show');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+            });
         });
     </script>
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
