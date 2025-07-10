@@ -1,9 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const marked = require('marked');
 
-// Read the template file
-const templatePath = path.join(__dirname, 'template.html');
+// File paths
 const vulnerabilitiesPath = path.join(__dirname, 'vulnerabilities.md');
 const outputPath = path.join(__dirname, 'index.html');
 
@@ -49,7 +47,7 @@ function parseVulnerabilities(markdownContent) {
         tags = line.replace('**Tags:**', '').trim().split(',').map(tag => tag.trim());
       } else if (line.startsWith('**URL:**')) {
         url = line.replace('**URL:**', '').trim();
-      } else if (line.trim() !== '') {
+      } else if (line.trim() !== '' && !line.startsWith('**')) {
         if (!inDescription) {
           inDescription = true;
         }
@@ -72,19 +70,20 @@ function parseVulnerabilities(markdownContent) {
   return vulnerabilities;
 }
 
-// Function to generate grid view HTML for vulnerabilities
-function generateVulnerabilitiesGridHTML(vulnerabilities) {
+// Function to generate vulnerability cards HTML matching the stable UI structure
+function generateVulnerabilityCardsHTML(vulnerabilities) {
   let html = '';
   
   vulnerabilities.forEach(vuln => {
-    const idSlug = vuln.title.toLowerCase().replace(/[^\w]+/g, '-');
+    // Create a clean comment-safe title
+    const commentTitle = vuln.title.replace(/<!--/g, '').replace(/-->/g, '');
     
     html += `
-            <!-- Issue: ${vuln.title} -->
-            <div class="issue-card" data-category="${vuln.category.toLowerCase()}" data-severity="${vuln.severity.toLowerCase()}">
+            <!-- ${commentTitle} -->
+            <div class="vulnerability-card" data-category="${vuln.category.toLowerCase()}" data-severity="${vuln.severity.toLowerCase()}">
                 <div class="card-header">
                     <div class="issue-title">${vuln.title}</div>
-                    <span class="severity ${vuln.severity.toLowerCase()}">${vuln.severity}</span>
+                    <span class="severity-badge severity-${vuln.severity.toLowerCase()}">${vuln.severity}</span>
                 </div>
                 <div class="card-body">
                     <p class="issue-description">
@@ -99,34 +98,7 @@ function generateVulnerabilitiesGridHTML(vulnerabilities) {
                     </div>
                     <a href="${vuln.url}" class="btn" target="_blank">View Details</a>
                 </div>
-            </div>
-`;
-  });
-  
-  return html;
-}
-
-// Function to generate list view HTML for vulnerabilities
-function generateVulnerabilitiesListHTML(vulnerabilities) {
-  let html = '';
-  
-  vulnerabilities.forEach(vuln => {
-    html += `
-            <!-- List Item: ${vuln.title} -->
-            <div class="list-item" data-category="${vuln.category.toLowerCase()}" data-severity="${vuln.severity.toLowerCase()}">
-                <div class="list-item-left">
-                    <div class="list-severity ${vuln.severity.toLowerCase()}"></div>
-                    <div class="list-title">${vuln.title}</div>
-                </div>
-                <div class="list-meta">
-                    <div class="list-category">${vuln.category}</div>
-                    <div class="list-date">${vuln.date}</div>
-                </div>
-                <div class="list-actions">
-                    <a href="${vuln.url}" class="btn" target="_blank">View</a>
-                </div>
-            </div>
-`;
+            </div>`;
   });
   
   return html;
@@ -135,53 +107,52 @@ function generateVulnerabilitiesListHTML(vulnerabilities) {
 // Main function
 async function updateWebsite() {
   try {
-    // Check if template exists, if not, create it from current index.html
-    if (!fs.existsSync(templatePath)) {
-      console.log('Template file not found. Creating from current index.html...');
-      const currentIndex = fs.readFileSync(outputPath, 'utf8');
-      
-      // Replace the vulnerabilities section with a placeholder
-      const templateContent = currentIndex.replace(
-        /(<div class="issues-grid">)[\s\S]*?(<\/div>\s*<\/main>)/m,
-        '$1\n            <!-- VULNERABILITIES_PLACEHOLDER -->\n        $2'
-      );
-      
-      fs.writeFileSync(templatePath, templateContent);
-      console.log('Template created successfully.');
-    }
+    console.log('Reading vulnerabilities.md...');
     
     // Read the markdown file
     const markdownContent = fs.readFileSync(vulnerabilitiesPath, 'utf8');
     
     // Parse vulnerabilities
     const vulnerabilities = parseVulnerabilities(markdownContent);
+    console.log(`Found ${vulnerabilities.length} vulnerabilities`);
     
-    // Generate HTML for both views
-    const vulnerabilitiesGridHTML = generateVulnerabilitiesGridHTML(vulnerabilities);
-    const vulnerabilitiesListHTML = generateVulnerabilitiesListHTML(vulnerabilities);
+    // Generate HTML for vulnerability cards
+    const vulnerabilityCardsHTML = generateVulnerabilityCardsHTML(vulnerabilities);
     
-    // Read the template
-    const templateContent = fs.readFileSync(templatePath, 'utf8');
+    console.log('Reading current index.html...');
     
-    // Replace the placeholders with the generated HTML
-    let updatedContent = templateContent.replace(
-      /<!-- VULNERABILITIES_PLACEHOLDER -->/,
-      vulnerabilitiesGridHTML
-    );
+    // Read the current index.html
+    const currentHTML = fs.readFileSync(outputPath, 'utf8');
     
-    updatedContent = updatedContent.replace(
-      /<!-- VULNERABILITIES_LIST_PLACEHOLDER -->/,
-      vulnerabilitiesListHTML
-    );
+    // Find the vulnerability cards section and replace it
+    // Look for the pattern: <div class="issues-grid"> ... </div> (before the list view container)
+    const gridStartPattern = /<div class="issues-grid">/;
+    const gridEndPattern = /<\/div>\s*<!-- List View Container -->/;
+    
+    const startMatch = currentHTML.match(gridStartPattern);
+    const endMatch = currentHTML.match(gridEndPattern);
+    
+    if (!startMatch || !endMatch) {
+      throw new Error('Could not find vulnerability cards section in index.html');
+    }
+    
+    const beforeGrid = currentHTML.substring(0, startMatch.index + startMatch[0].length);
+    const afterGrid = currentHTML.substring(endMatch.index);
+    
+    // Reconstruct the HTML with new vulnerability cards
+    const updatedHTML = beforeGrid + vulnerabilityCardsHTML + '\n\n        </div>\n\n        ' + afterGrid;
     
     // Write the updated content to index.html
-    fs.writeFileSync(outputPath, updatedContent);
+    fs.writeFileSync(outputPath, updatedHTML);
     
-    console.log('Website updated successfully!');
+    console.log('✅ Website updated successfully!');
+    console.log(`✅ Updated ${vulnerabilities.length} vulnerabilities`);
+    console.log('✅ Stable UI structure preserved');
   } catch (error) {
-    console.error('Error updating website:', error);
+    console.error('❌ Error updating website:', error);
+    process.exit(1);
   }
 }
 
 // Run the update
-updateWebsite();
+updateWebsite(); 

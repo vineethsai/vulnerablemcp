@@ -5,8 +5,10 @@ This project tracks known vulnerabilities within Model Context Protocol (MCP) se
 ## How to Update the Website
 
 1. Edit the `vulnerabilities.md` file to add, modify, or remove vulnerability information
-2. Run `npm run update` to regenerate the website
-3. The `index.html` file will be automatically updated with your changes
+2. Run `npm run update` to regenerate the website (now uses stable UI-preserving script)
+3. The `index.html` file will be automatically updated with your changes while preserving the stable design
+
+**📖 For detailed instructions, see [UPDATE-GUIDE.md](UPDATE-GUIDE.md)**
 
 ## Markdown Format
 

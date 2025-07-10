@@ -221,3 +221,35 @@ A critical vulnerability in the GitHub MCP integration allows attackers to exfil
 **Mitigation:** Limit agent access to only necessary repositories (least privilege), enforce session boundaries (e.g., one repo per session), and deploy continuous security monitoring and runtime guardrails to detect and block toxic flows.
 
 ---
+
+## Critical Remote Code Execution (RCE) Vulnerability in Anthropic MCP Inspector - CVE-2025-49596
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** Oligo Security  
+**Date:** June 13, 2025  
+**Tags:** Remote Code Execution, Local Server, Code Execution, API Exploitation  
+**URL:** https://www.oligo.security/blog/critical-rce-vulnerability-in-anthropic-mcp-inspector-cve-2025-49596
+
+The MCP inspector is a developer tool for testing and debugging MCP servers. Versions of MCP Inspector below 0.14.1 are vulnerable to remote code execution due to lack of authentication between the Inspector client and proxy.
+
+The Remote Code Execution (RCE) vulnerability can also be chained with DNS rebinding or 0.0.0.0-day to exploit the MCP Inspector from the browser, leading to CVE-2025-49596 being issued, with a Critical CVSS Score of 9.4.
+
+This is one of the first critical RCEs in Anthropic's MCP ecosystem, exposing a new class of browser-based attacks against AI developer tools. With code execution on a developer's machine, attackers can steal data, install backdoors, and move laterally across networks to the organization network - highlighting serious risks for AI teams, open-source projects, and enterprise adopters relying on MCP.
+
+When the victim visits a malicious website, the vulnerability allows attackers to run arbitrary code on the visiting host running the MCP inspector tool that is used by default in many use cases.
+
+---
+
+## Heroku remote MCP Exploited: Maliciously Transfer App Ownership to Attacker
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** Tramlines.io
+**Date:** June 30, 2025   
+**Tags:** Tool Manipulation, Hidden Instructions, Security Bypass
+**URL:** https://www.tramlines.io/blog/heroku-mcp-exploit
+
+A critical security vulnerability has been discovered by tramlines.io researchers where attackers can inject a message into a Heroku-hosted web service they don't own to maliciously transfer ownership of the service to themselves.
+
+---

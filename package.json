@@ -2,9 +2,9 @@
   "name": "vulnerablemcp",
   "version": "1.0.0",
   "description": "Tracking Model Context Protocol Vulnerabilities",
-  "main": "update.js",
+  "main": "update-stable.js",
   "scripts": {
-    "update": "node update.js"
+    "update": "node update-stable.js"
   },
   "dependencies": {
     "marked": "^4.3.0",
