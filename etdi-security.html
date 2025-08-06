@@ -58,10 +58,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
+        .security-content {
+            display: flex;
+            gap: 0;
+            margin-top: 2.5rem;
+            max-width: 100%;
+            overflow: visible;
+            position: relative;
+        }
+        
+        .security-nav {
+            position: sticky;
+            top: 5rem;
+            align-self: start;
+            background-color: #f8f9fa;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            width: 320px;
+            flex-shrink: 0;
+            padding: 2rem 1rem 2rem 2rem;
+            overflow-y: auto;
+            max-height: calc(100vh - 5rem);
+        }
+        
         .security-main {
-            flex: 1;
-            padding: 0 2rem;
-            max-width: calc(100% - 350px);
+            background-color: white;
+            padding: 2.5rem 3rem 2.5rem 4rem;
+            max-width: 1000px;
+            margin-left: 0;
+            margin-right: auto;
+            flex-grow: 1;
+            overflow: hidden;
         }
 
         .image-container {
