@@ -253,3 +253,14 @@ When the victim visits a malicious website, the vulnerability allows attackers t
 A critical security vulnerability has been discovered by tramlines.io researchers where attackers can inject a message into a Heroku-hosted web service they don't own to maliciously transfer ownership of the service to themselves.
 
 ---
+
+## Real-world malicious MCP Server: postmark-mcp
+
+**Severity:** High
+**Category:** Security
+**Reported By:** Koi Security
+**Date:** September 25, 2025
+**Tags:** Data exfiltration
+**URL:** https://www.koi.security/blog/postmark-mcp-npm-malicious-backdoor-email-theft
+
+---
