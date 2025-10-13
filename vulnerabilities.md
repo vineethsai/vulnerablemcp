@@ -253,3 +253,33 @@ When the victim visits a malicious website, the vulnerability allows attackers t
 A critical security vulnerability has been discovered by tramlines.io researchers where attackers can inject a message into a Heroku-hosted web service they don't own to maliciously transfer ownership of the service to themselves.
 
 ---
+
+## Full Schema Poisoning (FSP)
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** Simcha Kosman  
+**Date:** May 30, 2025  
+**Tags:** Schema Manipulation, Input Boundary, Inheritance Exploitation  
+**URL:** https://www.cyberark.com/resources/threat-research-blog/poison-everywhere-no-output-from-your-mcp-server-is-safe
+
+An attack vector where malicious actors modify global schema definitions that apply across multiple tools, causing poisoned configurations to be inherited widely. This vulnerability exploits the shared nature of schema definitions to propagate malicious settings like timeouts, default values, or wrapper code across the tool ecosystem.
+
+The attack is particularly dangerous because it can affect multiple tools simultaneously through their shared schema inheritance, potentially compromising entire tool registries at once. For example, an attacker could modify global timeout settings to `0s` or inject malicious wrapper code that gets automatically inherited by all conforming tools.
+
+---
+
+## CVE-2025-54136 –  MCPoison Cursor IDE: Persistent Code Execution via MCP Trust Bypass
+
+**Severity:** High  
+**Category:** Security  
+**Reported By:** Andrey Charikov, Roman Zaikin & Oded Vanunu  
+**Date:** August 5, 2025
+**Tags:** Configuration Injection, Client Manipulation, Server Prioritization  
+**URL:** https://research.checkpoint.com/2025/cursor-vulnerability-mcpoison/
+
+A vulnerability where attackers can manipulate the MCP client's configuration files (e.g., config.json) to override tool definitions or prioritize malicious servers over legitimate ones. This attack can effectively hijack the client's trust relationships by modifying server endpoints, authentication settings, or tool configurations without user awareness.
+
+The attack is particularly dangerous because many MCP clients automatically load configuration from standard locations without verification, allowing attackers to inject malicious server definitions or override existing trusted endpoints with compromised mirrors. Once the configuration is poisoned, all subsequent MCP operations could be redirected through attacker-controlled infrastructure.
+
+---
