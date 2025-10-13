@@ -518,6 +518,52 @@ When the victim visits a malicious website, the vulnerability allows attackers t
                     <a href="https://www.tramlines.io/blog/heroku-mcp-exploit" class="btn" target="_blank">View Details</a>
                 </div>
             </div>
+            <!-- Full Schema Poisoning (FSP) -->
+            <div class="vulnerability-card" data-category="security" data-severity="high">
+                <div class="card-header">
+                    <div class="issue-title">Full Schema Poisoning (FSP)</div>
+                    <span class="severity-badge severity-high">High</span>
+                </div>
+                <div class="card-body">
+                    <p class="issue-description">
+                        An attack vector where malicious actors modify global schema definitions that apply across multiple tools, causing poisoned configurations to be inherited widely. This vulnerability exploits the shared nature of schema definitions to propagate malicious settings like timeouts, default values, or wrapper code across the tool ecosystem.
+The attack is particularly dangerous because it can affect multiple tools simultaneously through their shared schema inheritance, potentially compromising entire tool registries at once. For example, an attacker could modify global timeout settings to `0s` or inject malicious wrapper code that gets automatically inherited by all conforming tools.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Schema Manipulation</span>
+                        <span class="tag">Input Boundary</span>
+                        <span class="tag">Inheritance Exploitation</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="far fa-calendar"></i> May 30, 2025</span>
+                        <span><i class="fas fa-user"></i> Simcha Kosman</span>
+                    </div>
+                    <a href="https://www.cyberark.com/resources/threat-research-blog/poison-everywhere-no-output-from-your-mcp-server-is-safe" class="btn" target="_blank">View Details</a>
+                </div>
+            </div>
+            <!-- CVE-2025-54136 –  MCPoison Cursor IDE: Persistent Code Execution via MCP Trust Bypass -->
+            <div class="vulnerability-card" data-category="security" data-severity="high">
+                <div class="card-header">
+                    <div class="issue-title">CVE-2025-54136 –  MCPoison Cursor IDE: Persistent Code Execution via MCP Trust Bypass</div>
+                    <span class="severity-badge severity-high">High</span>
+                </div>
+                <div class="card-body">
+                    <p class="issue-description">
+                        A vulnerability where attackers can manipulate the MCP client's configuration files (e.g., config.json) to override tool definitions or prioritize malicious servers over legitimate ones. This attack can effectively hijack the client's trust relationships by modifying server endpoints, authentication settings, or tool configurations without user awareness.
+The attack is particularly dangerous because many MCP clients automatically load configuration from standard locations without verification, allowing attackers to inject malicious server definitions or override existing trusted endpoints with compromised mirrors. Once the configuration is poisoned, all subsequent MCP operations could be redirected through attacker-controlled infrastructure.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Configuration Injection</span>
+                        <span class="tag">Client Manipulation</span>
+                        <span class="tag">Server Prioritization</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="far fa-calendar"></i> August 5, 2025</span>
+                        <span><i class="fas fa-user"></i> Andrey Charikov, Roman Zaikin & Oded Vanunu</span>
+                    </div>
+                    <a href="https://research.checkpoint.com/2025/cursor-vulnerability-mcpoison/" class="btn" target="_blank">View Details</a>
+                </div>
+            </div>
 
         </div>
 
