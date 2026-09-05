@@ -1357,4 +1357,33 @@
       { "title": "ctrlaltnod: Critical MCP Server Flaws", "url": "https://www.ctrlaltnod.com/news/critical-flaws-in-microsoft-anthropic-mcp-servers-enable-rce/" }
     ]
   }
+,
+  {
+    "id": "mcp-toolbox-ssrf-open-redirect",
+    "title": "MCP Toolbox for Databases: SSRF via Unrestricted HTTP Redirection",
+    "alternativeNames": ["CVE-2026-14540", "MCP Toolbox HTTP Source SSRF"],
+    "severity": "high",
+    "category": "network-security",
+    "impactScore": 8,
+    "exploitability": "moderate",
+    "affectedComponents": ["server"],
+    "prevalence": "rare",
+    "reportedBy": "Syed Anas Mohiuddin",
+    "date": "2026-07-31",
+    "tags": ["ssrf", "security-bypass"],
+    "ciscoObjectives": ["unauthorized-access", "communication-compromise"],
+    "url": "https://cveawg.mitre.org/api/cve/CVE-2026-14540",
+    "cveIds": ["CVE-2026-14540"],
+    "description": "A Server-Side Request Forgery (SSRF) vulnerability in the generic HTTP source and tool components of Google's MCP Toolbox for Databases (versions 0.3.0 through 1.4.0). The underlying HTTP client lacks a restrictive redirect policy and target-IP validation, letting a crafted path parameter coerce the toolbox into following redirects to internal or arbitrary external endpoints.",
+    "who": "Discovered by Syed Anas Mohiuddin and reported to Google, which assigned CVE-2026-14540 as the CNA and credited him as finder. Affects deployments of Google's MCP Toolbox for Databases that expose the generic HTTP source/tool with network reachability.",
+    "where": "internal/sources/http/http.go in the MCP Toolbox for Databases: the HTTP client is initialized without a restrictive CheckRedirect policy hook and without target IP validation.",
+    "when": "Reported to Google; CVE-2026-14540 published 2026-07-31 with a CVSS v4.0 score of 8.0 (High).",
+    "how": "An attacker or malicious data-driven prompt supplies a crafted path parameter to the generic HTTP source/tool. Because the underlying HTTP client has no redirect-destination restriction, the toolbox blindly follows an open redirect or destination swap, making requests to internal network endpoints or arbitrary external hosts on the attacker's behalf.",
+    "impact": "SSRF against internal infrastructure reachable from the MCP Toolbox host, including cloud metadata endpoints, internal services, and other network-restricted resources not otherwise reachable by the caller.",
+    "mitigation": "Upgrade to the vendor-fixed release. Until patched, restrict the HTTP source/tool to trusted, allowlisted destinations, disable it where not required, and run the toolbox with least-privilege network access so a redirected request cannot reach sensitive internal endpoints.",
+    "references": [
+      { "title": "Official CVE record (CVE-2026-14540)", "url": "https://cveawg.mitre.org/api/cve/CVE-2026-14540" },
+      { "title": "NVD entry", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-14540" }
+    ]
+  }
 ]
