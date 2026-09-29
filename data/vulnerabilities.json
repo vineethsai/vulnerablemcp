@@ -1356,5 +1356,34 @@
     "references": [
       { "title": "ctrlaltnod: Critical MCP Server Flaws", "url": "https://www.ctrlaltnod.com/news/critical-flaws-in-microsoft-anthropic-mcp-servers-enable-rce/" }
     ]
+  },
+  {
+    "id": "cve-2026-14540-google-mcp-toolbox-ssrf",
+    "title": "Google MCP Toolbox for Databases SSRF (CVE-2026-14540)",
+    "alternativeNames": ["mcp-toolbox Redirect SSRF"],
+    "severity": "high",
+    "category": "input-validation",
+    "impactScore": 8,
+    "exploitability": "medium",
+    "affectedComponents": ["server"],
+    "prevalence": "common",
+    "reportedBy": "Syed Anas Mohiuddin",
+    "date": "2026-07-31",
+    "tags": ["ssrf", "redirect", "cloud-metadata"],
+    "ciscoObjectives": ["unauthorized-access", "data-privacy-violation"],
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-14540",
+    "cveIds": ["CVE-2026-14540"],
+    "description": "The generic HTTP source/tool client in Google's MCP Toolbox for Databases (versions 0.3.0-1.4.0) follows HTTP redirects without a CheckRedirect policy or target IP validation, allowing an attacker-influenced path parameter to redirect the server's outbound request to an internal or arbitrary endpoint. CVSS v4.0 8.0 (High). CNA: Google.",
+    "who": "Discovered and reported by Syed Anas Mohiuddin. Affects deployments of Google's mcp-toolbox using the generic HTTP source.",
+    "where": "internal/sources/http/http.go in googleapis/mcp-toolbox, which initializes its HTTP client without a restrictive redirect policy.",
+    "when": "Published 2026-07-31. Fixed in v1.5.0 (googleapis/mcp-toolbox PR #3448).",
+    "how": "An attacker or malicious prompt-driven input supplies a crafted path/parameter that causes the HTTP source to be redirected to an internal or arbitrary destination, which the client follows without restriction.",
+    "impact": "Unauthorized requests to internal network services or cloud instance metadata endpoints from the server's network context, potentially exposing credentials or internal infrastructure.",
+    "mitigation": "Upgrade to mcp-toolbox v1.5.0 or later, which adds redirect and target validation to the HTTP source client.",
+    "references": [
+      { "title": "NVD: CVE-2026-14540", "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-14540" },
+      { "title": "Fix: googleapis/mcp-toolbox PR #3448", "url": "https://github.com/googleapis/mcp-toolbox/pull/3448" },
+      { "title": "Finder's writeup", "url": "https://syedanas01.github.io/cve-2026-14540.html" }
+    ]
   }
 ]
